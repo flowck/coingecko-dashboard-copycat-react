@@ -1,21 +1,21 @@
 import { Switch, Route } from "react-router-dom";
-import { ListCoins } from "./modules/coins/views/ListCoins";
-import { ListCompanies } from "./modules/finance/views/ListCompanies";
+import { Login } from "./modules/auth/views/Login";
+import { Dashboard } from "./modules/dashboard/views/Dashboard";
 
 function Home() {
   return <div>Home</div>;
 }
 
-export function App() {
+function App() {
   return (
     <main>
       <Switch>
-        <Route path="/coins">
-          <ListCoins></ListCoins>
+        <Route path="/dashboard">
+          <Dashboard></Dashboard>
         </Route>
 
-        <Route path="/finance">
-          <ListCompanies></ListCompanies>
+        <Route path="/login">
+          <Login></Login>
         </Route>
 
         <Route path="/">
@@ -25,3 +25,5 @@ export function App() {
     </main>
   );
 }
+
+export default App;

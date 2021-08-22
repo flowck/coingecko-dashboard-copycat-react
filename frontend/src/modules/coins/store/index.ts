@@ -1,0 +1,1 @@
+export { coinsReducer } from "./coinsReducer";
