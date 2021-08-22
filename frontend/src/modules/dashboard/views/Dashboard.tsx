@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { ListCoins } from "../../coins/views/ListCoins";
+// import { useState } from "react";
+import ListCoins from "../../coins/views/ListCoins";
 import { ListCompanies } from "../../finance/views/ListCompanies";
-import { Switch, Route, useHistory, useRouteMatch } from "react-router-dom";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 
 export function Dashboard() {
-  const history = useHistory();
+  // const history = useHistory();
   const match = useRouteMatch();
-  const [isUserLoggedIn] = useState(null);
+  // const [isUserLoggedIn] = useState(null);
 
-  if (!isUserLoggedIn) {
-    history.push("/login");
-  }
+  // if (!isUserLoggedIn) {
+  //   history.push("/login");
+  // }
 
   return (
     <>

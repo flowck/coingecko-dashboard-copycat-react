@@ -6,7 +6,7 @@ function Home() {
   return <div>Home</div>;
 }
 
-export function App() {
+function App() {
   return (
     <main>
       <Switch>
@@ -25,3 +25,5 @@ export function App() {
     </main>
   );
 }
+
+export default App;
