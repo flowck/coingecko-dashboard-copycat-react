@@ -2,11 +2,29 @@
   "name": "@coingecko-dashboard-copycat-react/backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "Firmino Changani",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@types/jsonwebtoken": "^8.5.5",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.1",
+    "@types/compression": "^1.7.1",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.7.1"
+  },
+  "optionalDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }
