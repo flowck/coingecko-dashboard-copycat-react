@@ -1,0 +1,12 @@
+{
+  "name": "@coingecko-dashboard-copycat-react/backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Firmino Changani",
+  "license": "MIT"
+}
