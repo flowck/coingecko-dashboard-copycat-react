@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-green-gecko: #8ec649;
+  --color-dark: #393939;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  color: var(--color-dark);
+}
+
+a {
+  color: var(--color-dark);
+}
