@@ -1,29 +1,32 @@
 import { Dispatch } from "redux";
-import { Coin } from "./coinsInterfaces";
-import { getCoins } from "./coinsActions";
+import { CoinMarket } from "./coinsInterfaces";
+import { getCoins, setCoinError } from "./coinsActions";
 
-export const fetchCoins = () => async (dispatch: Dispatch) => {
-  try {
-    let coins = retrieveCoins();
-    const apiBase = process.env.REACT_APP_COINGECKO_API;
+export const fetchCoinsPerMarket = (vsCurrency = "USD") => {
+  return async (dispatch: Dispatch) => {
+    try {
+      let coins = retrieveCoins();
+      const apiBase = process.env.REACT_APP_COINGECKO_API;
 
-    if (!coins) {
-      const response = await fetch(`${apiBase}/coins/list`);
-      coins = (await response.json()) as Coin[];
-      persistCoins(coins);
+      if (!coins) {
+        const url = `${apiBase}/coins/markets?vs_currency=${vsCurrency}&per_page=100`;
+        const response = await fetch(url);
+        coins = (await response.json()) as CoinMarket[];
+        persistCoins(coins);
+      }
+
+      dispatch(getCoins(coins));
+    } catch (error) {
+      dispatch(setCoinError(error));
     }
-
-    dispatch(getCoins(coins));
-  } catch (error) {
-    throw error;
-  }
+  };
 };
 
-function persistCoins(coins: Coin[]) {
-  window.sessionStorage.setItem("cg.coins", JSON.stringify(coins));
+function persistCoins(coins: CoinMarket[]) {
+  window.sessionStorage.setItem("cg.coinsPerMarket", JSON.stringify(coins));
 }
 
-function retrieveCoins(): Coin[] | null {
-  const coins = window.sessionStorage.getItem("cg.coins");
+function retrieveCoins(): CoinMarket[] | null {
+  const coins = window.sessionStorage.getItem("cg.coinsPerMarket");
   return coins ? JSON.parse(coins) : null;
 }

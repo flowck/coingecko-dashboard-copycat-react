@@ -1,11 +1,13 @@
-import { Coin } from "./coinsInterfaces";
+import { CoinMarket } from "./coinsInterfaces";
 
 export enum COINS_ACTIONS {
   GET_COINS = "GET_COINS",
+  SET_ERROR = "SET_SEROR",
+  SET_VS_CURRENY = "SET_VS_CURRENCY",
 }
 
-export function getCoins(payload: Coin[]) {
-  return { type: COINS_ACTIONS.GET_COINS, payload };
-}
+export const setCoinError = (payload: string) => ({ type: COINS_ACTIONS.SET_ERROR, payload });
+export const getCoins = (payload: CoinMarket[]) => ({ type: COINS_ACTIONS.GET_COINS, payload });
+export const setVsCurrency = (payload: string) => ({ type: COINS_ACTIONS.SET_VS_CURRENY, payload });
 
-export type CoinsActionType = COINS_ACTIONS.GET_COINS;
+export type CoinsActionType = COINS_ACTIONS.GET_COINS | COINS_ACTIONS.SET_ERROR;
