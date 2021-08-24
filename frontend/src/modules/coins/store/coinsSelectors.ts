@@ -1,5 +1,5 @@
+import { CoinsState } from "../coins";
 import { createSelector } from "reselect";
-import { CoinsState } from "./coinsInterfaces";
 
 const getCoinsSelector = (state: CoinsState) => state.coins;
 
