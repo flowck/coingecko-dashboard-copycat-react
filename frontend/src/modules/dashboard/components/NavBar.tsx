@@ -65,7 +65,7 @@ export function NavBar() {
           <li>
             <Link to="/dashboard/coins">Coins</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dashboard/finance">Finance</Link>
           </li>
           <li>
@@ -73,7 +73,7 @@ export function NavBar() {
           </li>
           <li>
             <Link to="/dashboard/indexes">Indexes</Link>
-          </li>
+          </li> */}
         </ul>
       </Nav>
     </Container>

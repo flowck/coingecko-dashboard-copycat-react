@@ -1,7 +1,13 @@
 export interface Coin {
-  id: string;
-  name: string;
+  index: number;
   symbol: string;
+  key: string;
+  name: string;
+  image: string;
+  price: number;
+  marketCapital: number;
+  lastDayVolume: number;
+  lastDayPriceChange: number;
 }
 
 export interface CoinsState {
