@@ -1,7 +1,7 @@
-import { CoinsState } from "../coins";
+import { CoinsModuleState } from "../coins";
 import { COINS_ACTIONS } from "./coinsActions";
 
-const _state: CoinsState = {
+const _state: CoinsModuleState = {
   coins: [],
   error: "",
   coinsPerMarketVsCurrency: "USD",

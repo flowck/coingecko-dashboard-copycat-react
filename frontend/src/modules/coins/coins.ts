@@ -10,7 +10,7 @@ export interface Coin {
   lastDayPriceChange: number;
 }
 
-export interface CoinsState {
+export interface CoinsModuleState {
   error: string;
   coins: CoinMarket[];
   coinsPerMarketVsCurrency: string;

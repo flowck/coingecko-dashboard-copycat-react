@@ -1,7 +1,7 @@
-import { CoinsState } from "../coins";
 import { createSelector } from "reselect";
+import { CoinsModuleState } from "../coins";
 
-const getCoinsSelector = (state: CoinsState) => state.coins;
+const getCoinsSelector = (state: CoinsModuleState) => state.coins;
 
 export const coinsSelector = createSelector(getCoinsSelector, (coins) => {
   return coins.map((coin, index) => {
