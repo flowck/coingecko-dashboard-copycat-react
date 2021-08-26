@@ -1,0 +1,66 @@
+# Container image
+image: node:alpine
+
+# Stages
+stages:
+  - setup
+  - build
+  - test
+  - deploy
+  - release
+
+# Cache node_modules
+cache:
+  paths:
+    - node_modules/
+
+# Setup jobs
+install-dependencies:
+  stage: setup
+  script:
+    - cd frontend
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+
+# Test jobs
+unit-tests:
+  stage: test
+  script:
+    - cd frontend
+    - npm run test
+
+# Build jobs
+build:
+  stage: build
+  script:
+    - cd frontend
+    - npm run build
+
+# Release new version
+# release-new-version:
+#   stage: release
+#   script: npm run deploy:prod
+#   only:
+#     refs:
+#       - main
+
+# Deploy
+deploy-to-dev:
+  stage: deploy
+  script:
+    - cd frontend
+    - npm run deploy:dev
+  only:
+    refs:
+      - develop
+
+deploy-to-prod:
+  stage: deploy
+  script:
+    - cd frontend
+    - npm run deploy:prod
+  only:
+    refs:
+      - main
