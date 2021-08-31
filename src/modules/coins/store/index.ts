@@ -1,1 +1,1 @@
-export { coinsReducer } from "./coinsReducer";
+export { coinsReducer } from "./coins.reducer";

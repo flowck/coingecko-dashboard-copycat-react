@@ -13,7 +13,6 @@ const Logo = styled.div`
   display: flex;
   padding: 20px 10px;
   align-items: center;
-  // border: 1px solid red;
 
   h1 {
     font-size: 16px;
@@ -27,8 +26,6 @@ const Logo = styled.div`
 `;
 
 const Nav = styled.nav`
-  // border: 1px solid red;
-
   ul li {
     font-size: 12px;
     text-transform: uppercase;
@@ -65,10 +62,10 @@ export function NavBar() {
           <li>
             <Link to="/dashboard/coins">Coins</Link>
           </li>
-          {/* <li>
-            <Link to="/dashboard/finance">Finance</Link>
-          </li>
           <li>
+            <Link to="/dashboard/exchanges">Exchanges</Link>
+          </li>
+          {/* <li>
             <Link to="/dashboard/exchanges">Exchanges</Link>
           </li>
           <li>

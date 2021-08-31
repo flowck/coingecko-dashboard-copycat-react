@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import { RootState } from "../../../store";
 import { useEffect, useState } from "react";
-import { coinsSelector } from "../store/coinsSelectors";
-import { fetchCoinsPerMarket } from "../store/coinsThunks";
+import { coinsSelector } from "../store/coins.selectors";
+import { fetchCoinsPerMarket } from "../store/coins.thunks";
 import { CoinColumnName } from "../components/CoinColumnName";
 
 interface ListCoinsProps {
