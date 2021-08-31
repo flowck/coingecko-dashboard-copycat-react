@@ -1,5 +1,5 @@
 import { CoinsModuleState } from "../coins";
-import { COINS_ACTIONS } from "./coinsActions";
+import { COINS_ACTIONS } from "./coins.actions";
 
 const _state: CoinsModuleState = {
   coins: [],

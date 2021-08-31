@@ -1,9 +1,9 @@
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../../../store";
-import { getCoins, setCoinError } from "./coinsActions";
-import { CoinsService } from "./../services/coinsService";
-import { cacheService } from "./../../../common/services/CacheService";
+import { getCoins, setCoinError } from "./coins.actions";
+import { CoinsService } from "../services/coinsService";
+import { cacheService } from "../../../common/services/CacheService";
 
 const coinsService = new CoinsService(cacheService);
 
