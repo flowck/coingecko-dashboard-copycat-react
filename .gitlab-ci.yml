@@ -17,6 +17,8 @@ cache:
 # Setup jobs
 install-dependencies:
   stage: setup
+  tags:
+    - changani
   script:
     - cd frontend
     - npm ci
@@ -26,6 +28,8 @@ install-dependencies:
 
 # Test jobs
 unit-tests:
+  tags:
+    - changani
   stage: test
   script:
     - cd frontend
@@ -33,6 +37,8 @@ unit-tests:
 
 # Build jobs
 build:
+  tags:
+    - changani
   stage: build
   script:
     - cd frontend
@@ -48,6 +54,8 @@ build:
 
 # Deploy
 deploy-to-dev:
+  tags:
+    - changani
   stage: deploy
   script:
     - cd frontend
@@ -57,6 +65,8 @@ deploy-to-dev:
       - develop
 
 deploy-to-prod:
+  tags:
+    - changani
   stage: deploy
   script:
     - cd frontend
