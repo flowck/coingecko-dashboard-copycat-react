@@ -1,8 +1,7 @@
-// import { useState } from "react";
 import styled from "styled-components";
 import { NavBar } from "../components/NavBar";
-import ListCoins from "../../coins/views/ListCoins";
-import { ListCompanies } from "../../finance/views/ListCompanies";
+import ListCoins from "../../../../modules/coins/views/ListCoins";
+import { ListCompanies } from "../../../../modules/finance/views/ListCompanies";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 
 const DashboardContainer = styled.section`
@@ -17,13 +16,7 @@ const DashboardViews = styled.section`
 `;
 
 export function Dashboard() {
-  // const history = useHistory();
   const match = useRouteMatch();
-  // const [isUserLoggedIn] = useState(null);
-
-  // if (!isUserLoggedIn) {
-  //   history.push("/login");
-  // }
 
   return (
     <DashboardContainer>
