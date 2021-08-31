@@ -50,6 +50,8 @@ build:
 #       - main
 
 sonarqube-check:
+  tags:
+    - changani
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
