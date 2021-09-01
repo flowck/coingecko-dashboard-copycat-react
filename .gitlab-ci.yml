@@ -2,17 +2,17 @@
 # image: node:slim
 
 # Stages
-# stages:
-#   - setup
-#   - build
-#   - test
-#   - release
+stages:
+  - setup
+  - build
+  - test
+  - release
 
 # Cache node_modules
 
 # Setup jobs
 install-dependencies:
-  # stage: setup
+  stage: setup
   tags:
     - changani
   script:
@@ -26,11 +26,11 @@ install-dependencies:
 
 # Test jobs
 unit-tests:
-  needs:
-    - job: install-dependencies
+  # needs:
+  #   - job: install-dependencies
   tags:
     - changani
-  # stage: test
+  stage: test
   script:
     - npm run test
 
@@ -38,9 +38,9 @@ unit-tests:
 build:
   tags:
     - changani
-  # stage: build
-  needs:
-    - job: unit-tests
+  stage: build
+  # needs:
+  #   - job: unit-tests
   script:
     - npm run build
 
@@ -53,8 +53,9 @@ build:
 #       - main
 
 sonarqube-check:
-  needs:
-    - job: build
+  # needs:
+  #   - job: build
+  stage: test
   tags:
     - changani
   image:
