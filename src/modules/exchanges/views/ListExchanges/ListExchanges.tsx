@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../../../store";
+import { ExchangeName } from "./listExchanges.styles";
 import { Exchange } from "../../store/exchanges.interface";
 import { getExchanges } from "../../store/exchanges.thunks";
-import { ExchangeName } from "./ListExchanges.styles";
 import { AppThunkDispatch } from "../../../../store/store.types";
 import { DataTable } from "../../../../common/components/dataTable/dataTable";
 import { ViewTitle } from "../../../../common/components/viewTitle/viewTitle";

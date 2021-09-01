@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { NavBar } from "../components/navBar/navBar";
 import { Header } from "../components/header/header";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import ListCoins from "../../../../modules/coins/views/ListCoins";
+import ListCoins from "../../../../modules/coins/views/listCoins";
 import { ListCompanies } from "../../../../modules/finance/views/ListCompanies";
-import ListExchanges from "../../../../modules/exchanges/views/ListExchanges/ListExchanges";
+import ListExchanges from "../../../../modules/exchanges/views/listExchanges/listExchanges";
 
 const DashboardContainer = styled.section`
   display: flex;

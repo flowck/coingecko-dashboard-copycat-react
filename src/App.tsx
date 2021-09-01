@@ -1,7 +1,7 @@
 import "./common/styles/global.css";
 import { useHistory } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
-import { Dashboard } from "./common/modules/dashboard/views/Dashboard";
+import { Dashboard } from "./common/modules/dashboard/views/dashboard";
 
 function Home() {
   const history = useHistory();
