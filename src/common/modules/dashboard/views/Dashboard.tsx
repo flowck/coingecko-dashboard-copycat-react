@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { NavBar } from "../components/NavBar";
+import { NavBar } from "../components/navBar/navBar";
+import { Header } from "../components/header/header";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import ListCoins from "../../../../modules/coins/views/ListCoins";
 import { ListCompanies } from "../../../../modules/finance/views/ListCompanies";
@@ -10,10 +11,11 @@ const DashboardContainer = styled.section`
 `;
 
 const DashboardViews = styled.section`
+  padding: 30px;
+  margin-top: 40px;
   margin-left: 230px;
-  padding: 54px 30px;
-  min-height: 100vh;
   width: calc(100% - 230px);
+  min-height: calc(100vh -40px);
 `;
 
 export function Dashboard() {
@@ -21,6 +23,8 @@ export function Dashboard() {
 
   return (
     <DashboardContainer>
+      <Header></Header>
+
       <NavBar></NavBar>
 
       <DashboardViews>
