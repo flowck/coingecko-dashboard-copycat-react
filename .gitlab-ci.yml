@@ -9,9 +9,6 @@ image: node:slim
 #   - release
 
 # Cache node_modules
-cache:
-  paths:
-    - node_modules/
 
 # Setup jobs
 install-dependencies:
@@ -20,9 +17,12 @@ install-dependencies:
     - changani
   script:
     - npm ci
-  artifacts:
+  cache:
     paths:
       - node_modules/
+  # artifacts:
+  #   paths:
+  #     - node_modules/
 
 # Build jobs
 build:
