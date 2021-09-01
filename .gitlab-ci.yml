@@ -13,8 +13,8 @@ stages:
 # Setup jobs
 install-dependencies:
   stage: setup
-  tags:
-    - changani
+  # tags:
+  #   - changani
   script:
     - npm ci
   cache:
@@ -28,16 +28,16 @@ install-dependencies:
 unit-tests:
   # needs:
   #   - job: install-dependencies
-  tags:
-    - changani
+  # tags:
+  #   - changani
   stage: test
   script:
     - npm run test
 
 # Build jobs
 build:
-  tags:
-    - changani
+  # tags:
+  #   - changani
   stage: build
   # needs:
   #   - job: unit-tests
@@ -56,8 +56,8 @@ sonarqube-check:
   # needs:
   #   - job: build
   stage: test
-  tags:
-    - changani
+  # tags:
+  #   - changani
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
