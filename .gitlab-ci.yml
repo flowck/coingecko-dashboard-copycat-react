@@ -1,5 +1,5 @@
 # Container image
-image: node:slim
+# image: node:slim
 
 # Stages
 # stages:
@@ -20,9 +20,9 @@ install-dependencies:
   cache:
     paths:
       - node_modules/
-  # artifacts:
-  #   paths:
-  #     - node_modules/
+  artifacts:
+    paths:
+      - node_modules/
 
 # Test jobs
 unit-tests:
