@@ -8,6 +8,7 @@ import { AppThunkDispatch } from "../../../../store/store.types";
 import { DataTable } from "../../../../common/components/dataTable/dataTable";
 import { ViewTitle } from "../../../../common/components/viewTitle/viewTitle";
 import { Link } from "react-router-dom";
+import { TrustScore } from "../../components/trustScore/trustScore";
 
 interface Props {
   exchanges: Exchange[];
@@ -30,7 +31,13 @@ const columns = [
   { name: "year_established", label: "year established" },
   { name: "country", label: "" },
   { name: "has_trading_incentive", label: "has trading incentive" },
-  { name: "trust_score", label: "trust score" },
+  {
+    name: "trust_score",
+    label: "trust score",
+    component(row: Exchange) {
+      return <TrustScore value={row.trust_score} max={10} />;
+    },
+  },
   { name: "trust_score_rank", label: "trust score rank" },
   { name: "trade_volume_24h_btc", label: "trade volume 24h (btc)" },
   { name: "trade_volume_24h_btc_normalized", label: "Trade volume 24h (BTC normalized)" },
