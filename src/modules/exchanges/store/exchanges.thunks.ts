@@ -23,7 +23,13 @@ export const getExchanges = (page = 1, perPage = 50): AppThunk => {
 export const getSingleExchange = (id: string): AppThunk => {
   return async (dispatch) => {
     try {
+      const key = `cg.exchanges.${id}`;
+      if (isDataCached(key)) {
+        return dispatch({ type: SET_EXCHANGE, payload: getCachedData(key) });
+      }
+
       const { data } = await axios.get<FullExchange>(`/exchanges/${id}`);
+      setCache(key, data);
       dispatch({ type: SET_EXCHANGE, payload: data });
     } catch (error) {
       dispatch({ type: SET_ERROR, payload: error });
