@@ -6,7 +6,6 @@ stages:
   - setup
   - build
   - test
-  - deploy
   - release
 
 # Cache node_modules
@@ -65,24 +64,3 @@ sonarqube-check:
   script:
     - sonar-scanner
   allow_failure: true
-
-# Deploy
-deploy-to-dev:
-  tags:
-    - changani
-  stage: deploy
-  script:
-    - npm run deploy:dev
-  only:
-    refs:
-      - develop
-
-deploy-to-prod:
-  tags:
-    - changani
-  stage: deploy
-  script:
-    - npm run deploy:prod
-  only:
-    refs:
-      - main
