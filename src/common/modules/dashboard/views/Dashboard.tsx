@@ -5,6 +5,7 @@ import { Switch, Route, useRouteMatch } from "react-router-dom";
 import ListCoins from "../../../../modules/coins/views/listCoins";
 import { ListCompanies } from "../../../../modules/finance/views/ListCompanies";
 import ListExchanges from "../../../../modules/exchanges/views/listExchanges/listExchanges";
+import SingleExchange from "../../../../modules/exchanges/views/singleExchange/singleExchange";
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -31,6 +32,10 @@ export function Dashboard() {
         <Switch>
           <Route path={`${match.path}/coins`}>
             <ListCoins></ListCoins>
+          </Route>
+
+          <Route path={`${match.path}/exchanges/:exchangeId`}>
+            <SingleExchange></SingleExchange>
           </Route>
 
           <Route path={`${match.path}/exchanges`}>

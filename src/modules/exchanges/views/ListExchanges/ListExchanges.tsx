@@ -7,6 +7,7 @@ import { getExchanges } from "../../store/exchanges.thunks";
 import { AppThunkDispatch } from "../../../../store/store.types";
 import { DataTable } from "../../../../common/components/dataTable/dataTable";
 import { ViewTitle } from "../../../../common/components/viewTitle/viewTitle";
+import { Link } from "react-router-dom";
 
 interface Props {
   exchanges: Exchange[];
@@ -21,7 +22,7 @@ const columns = [
       return (
         <ExchangeName>
           <img src={row.image} alt={row.name} />
-          <span>{row.name}</span>
+          <Link to={`/dashboard/exchanges/${row.id}`}>{row.name}</Link>
         </ExchangeName>
       );
     },
