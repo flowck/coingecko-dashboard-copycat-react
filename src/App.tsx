@@ -1,4 +1,3 @@
-import "antd/dist/antd.css";
 import "./common/styles/global.css";
 import { useHistory } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";

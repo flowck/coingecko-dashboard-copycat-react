@@ -1,4 +1,3 @@
-import { Table } from "antd";
 import { Action } from "redux";
 import { Coin } from "../coins";
 import { connect } from "react-redux";
@@ -6,8 +5,11 @@ import { ThunkDispatch } from "redux-thunk";
 import { RootState } from "../../../store";
 import { useEffect, useState } from "react";
 import { coinsSelector } from "../store/coins.selectors";
+import { numberToCurrency } from "../../../common/utils";
 import { fetchCoinsPerMarket } from "../store/coins.thunks";
-import { CoinColumnName } from "../components/CoinColumnName";
+import { CoinColumnName } from "../components/coinColumnName";
+import { DataTable } from "../../../common/components/dataTable/dataTable";
+import { ViewTitle } from "../../../common/components/viewTitle/viewTitle";
 
 interface ListCoinsProps {
   coins: Coin[];
@@ -18,19 +20,36 @@ function ListCoins({ fetchCoins, coins }: ListCoinsProps) {
   const [vsCurrency] = useState("usd");
 
   const columns = [
-    { title: "#", dataIndex: "index", key: "index" },
+    { label: "#", name: "index" },
     {
-      key: "name",
-      title: "Name",
-      dataIndex: "name",
-      render: (text: string, coin: Coin) => {
-        return <CoinColumnName coin={coin} />;
+      name: "name",
+      label: "Name",
+      component: (row: Coin) => {
+        return <CoinColumnName coin={row} />;
       },
     },
-    { title: "Price", dataIndex: "price", key: "price" },
-    { title: "24h", dataIndex: "lastDayPriceChange", key: "lastDayPriceChange" },
-    { title: "24h Volume", dataIndex: "lastDayVolume", key: "lastDayVolume" },
-    { title: "Mkt Cap", dataIndex: "marketCapital", key: "marketCapital" },
+    {
+      label: "Price",
+      name: "price",
+      component: (row: Coin) => {
+        return <span>{numberToCurrency(row.price, vsCurrency)}</span>;
+      },
+    },
+    { label: "24h", name: "lastDayPriceChange" },
+    {
+      label: "24h Volume",
+      name: "lastDayVolume",
+      component: (row: Coin) => {
+        return <span>{numberToCurrency(row.lastDayVolume, vsCurrency)}</span>;
+      },
+    },
+    {
+      label: "Mkt Cap",
+      name: "marketCapital",
+      component: (row: Coin) => {
+        return <span>{numberToCurrency(row.marketCapital, vsCurrency)}</span>;
+      },
+    },
   ];
 
   useEffect(() => {
@@ -39,9 +58,9 @@ function ListCoins({ fetchCoins, coins }: ListCoinsProps) {
 
   return (
     <section>
-      <h1>Coins</h1>
+      <ViewTitle title="Cryptocurrency Prices by Market Cap" />
 
-      {coins.length ? <Table dataSource={coins} columns={columns}></Table> : null}
+      {coins.length ? <DataTable rows={coins} columns={columns}></DataTable> : null}
     </section>
   );
 }
