@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { RootState } from "../../../../store";
 import { Exchange } from "../../store/exchanges.interface";
 import { getExchanges } from "../../store/exchanges.thunks";
+import { ExchangeName } from "./ListExchanges.styles";
 import { AppThunkDispatch } from "../../../../store/store.types";
 import { DataTable } from "../../../../common/components/dataTable/dataTable";
-import { ExchangeName } from "./ListExchanges.styles";
+import { ViewTitle } from "../../../../common/components/viewTitle/viewTitle";
 
 interface Props {
   exchanges: Exchange[];
@@ -14,23 +15,23 @@ interface Props {
 
 const columns = [
   {
-    name: "name",
     label: "",
+    name: "name",
     component(row: Exchange) {
       return (
         <ExchangeName>
           <img src={row.image} alt={row.name} />
-          {row.name}
+          <span>{row.name}</span>
         </ExchangeName>
       );
     },
   },
-  { name: "year_established", label: "" },
+  { name: "year_established", label: "year established" },
   { name: "country", label: "" },
-  { name: "has_trading_incentive", label: "" },
-  { name: "trust_score", label: "" },
-  { name: "trust_score_rank", label: "" },
-  { name: "trade_volume_24h_btc", label: "" },
+  { name: "has_trading_incentive", label: "has trading incentive" },
+  { name: "trust_score", label: "trust score" },
+  { name: "trust_score_rank", label: "trust score rank" },
+  { name: "trade_volume_24h_btc", label: "trade volume 24h (btc)" },
   { name: "trade_volume_24h_btc_normalized", label: "Trade volume 24h (BTC normalized)" },
 ];
 
@@ -41,7 +42,7 @@ function ListExchanges({ getExchanges, exchanges }: Props) {
 
   return (
     <section>
-      <h1>Exchanges</h1>
+      <ViewTitle title="Exchanges" />
 
       {exchanges.length ? <DataTable columns={columns} rows={exchanges} /> : null}
     </section>
