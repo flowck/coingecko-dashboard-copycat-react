@@ -16,3 +16,7 @@ export function getCachedData<T>(key: string): T | null {
 export function setCache(key: string, data: unknown): void {
   window.localStorage.setItem(key, JSON.stringify(data));
 }
+
+export function numberToCurrency(value: number, currency: string): string {
+  return value && currency ? value.toLocaleString("en-US", { currency, style: "currency" }) : "";
+}
