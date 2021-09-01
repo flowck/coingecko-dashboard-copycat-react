@@ -24,16 +24,6 @@ install-dependencies:
   #   paths:
   #     - node_modules/
 
-# Build jobs
-build:
-  tags:
-    - changani
-  # stage: build
-  needs:
-    - job: install-dependencies
-  script:
-    - npm run build
-
 # Test jobs
 unit-tests:
   needs:
@@ -44,6 +34,16 @@ unit-tests:
   script:
     - npm run test
 
+# Build jobs
+build:
+  tags:
+    - changani
+  # stage: build
+  needs:
+    - job: unit-tests
+  script:
+    - npm run build
+
 # Release new version
 # release-new-version:
 #   stage: release
@@ -53,7 +53,8 @@ unit-tests:
 #       - main
 
 sonarqube-check:
-  needs: []
+  needs:
+    - job: build
   tags:
     - changani
   image:
