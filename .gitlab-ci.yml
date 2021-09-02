@@ -11,6 +11,62 @@ stages:
 variables:
   GITLAB_TOKEN: $GL_TOKEN
 
+# Cache node_modules
+
+# Setup jobs
+install-dependencies:
+  stage: setup
+  # tags:
+  #   - changani
+  script:
+    - npm ci
+  cache:
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - node_modules/
+
+# Test jobs
+unit-tests:
+  # needs:
+  #   - job: install-dependencies
+  # tags:
+  #   - changani
+  stage: test
+  script:
+    - npm run test
+
+sonarqube-check:
+  # needs:
+  #   - job: build
+  stage: test
+  # tags:
+  #   - changani
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar" # Defines the location of the analysis task cache
+    GIT_DEPTH: "0" # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  allow_failure: true
+
+# Build jobs
+build:
+  # tags:
+  #   - changani
+  stage: build
+  # needs:
+  #   - job: unit-tests
+  script:
+    - npm run build
+
 # Release new version
 create-release:
   image: node:lts-alpine3.14
