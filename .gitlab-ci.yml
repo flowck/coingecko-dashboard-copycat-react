@@ -8,6 +8,9 @@ stages:
   - test
   - release
 
+variables:
+  GITLAB_TOKEN: $GL_TOKEN
+
 # Release new version
 create-release:
   image: node:lts-alpine3.14
