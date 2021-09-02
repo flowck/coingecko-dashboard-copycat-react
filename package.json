@@ -61,5 +61,11 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "husky": "^7.0.2",
     "typescript": "^4.3.5"
+  },
+  "optionalDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/gitlab": "^6.2.2",
+    "husky": "^7.0.2"
   }
 }

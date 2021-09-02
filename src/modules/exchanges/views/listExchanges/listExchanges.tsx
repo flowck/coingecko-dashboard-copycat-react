@@ -9,6 +9,7 @@ import { DataTable } from "../../../../common/components/dataTable/dataTable";
 import { ViewTitle } from "../../../../common/components/viewTitle/viewTitle";
 import { Link } from "react-router-dom";
 import { TrustScore } from "../../components/trustScore/trustScore";
+import { numberToCurrency } from "../../../../common/utils";
 
 interface Props {
   exchanges: Exchange[];
@@ -39,7 +40,13 @@ const columns = [
     },
   },
   { name: "trust_score_rank", label: "trust score rank" },
-  { name: "trade_volume_24h_btc", label: "trade volume 24h (btc)" },
+  {
+    name: "trade_volume_24h_btc",
+    label: "trade volume 24h (btc)",
+    component: (row: Exchange) => {
+      return <span>{numberToCurrency(row.trade_volume_24h_btc, "usd")}</span>;
+    },
+  },
   { name: "trade_volume_24h_btc_normalized", label: "Trade volume 24h (BTC normalized)" },
 ];
 

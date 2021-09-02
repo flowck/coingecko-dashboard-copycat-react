@@ -34,24 +34,6 @@ unit-tests:
   script:
     - npm run test
 
-# Build jobs
-build:
-  # tags:
-  #   - changani
-  stage: build
-  # needs:
-  #   - job: unit-tests
-  script:
-    - npm run build
-
-# Release new version
-# release-new-version:
-#   stage: release
-#   script: npm run deploy:prod
-#   only:
-#     refs:
-#       - main
-
 sonarqube-check:
   # needs:
   #   - job: build
@@ -71,3 +53,29 @@ sonarqube-check:
   script:
     - sonar-scanner
   allow_failure: true
+
+# Build jobs
+build:
+  # tags:
+  #   - changani
+  stage: build
+  # needs:
+  #   - job: unit-tests
+  script:
+    - npm run build
+
+# Release new version
+create-release:
+  image: node:lts-alpine3.14
+  tags:
+    - changani
+  stage: release
+  before_script:
+    - apk --no-cache add git
+    - npm i @semantic-release/changelog @semantic-release/git @semantic-release/gitlab
+    - npx husky install
+    - npx husky add .husky/commit-msg 'npx --no-install commitlint --edit $1'
+  script: npx semantic-release
+  only:
+    refs:
+      - main

@@ -6,13 +6,14 @@ import { getCachedData, getRequestOptions, isDataCached, setCache } from "../../
 
 export const getExchanges = (page = 1, perPage = 50): AppThunk => {
   return async (dispatch) => {
+    const key = "cg.exchanges";
     try {
-      if (isDataCached("cg.exchanges")) {
-        return dispatch({ type: SET_EXCHANGES, payload: getCachedData<Exchange>("cg.exchanges") });
+      if (isDataCached(key)) {
+        return dispatch({ type: SET_EXCHANGES, payload: getCachedData<Exchange>(key) });
       }
 
       const { data } = await axios.get<Exchange[]>("/exchanges", getRequestOptions(page, perPage));
-      setCache("cg.exchanges", data);
+      setCache(key, data);
       dispatch({ type: SET_EXCHANGES, payload: data });
     } catch (error) {
       dispatch({ type: SET_ERROR, payload: error });
