@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Container, Nav } from "./navBar.styles";
 
 export function NavBar() {
@@ -7,10 +7,14 @@ export function NavBar() {
       <Nav>
         <ul>
           <li>
-            <Link to="/dashboard/coins">Coins</Link>
+            <NavLink activeClassName="nav--is-active" to="/dashboard/coins">
+              Coins
+            </NavLink>
           </li>
           <li>
-            <Link to="/dashboard/exchanges">Exchanges</Link>
+            <NavLink activeClassName="nav--is-active" to="/dashboard/exchanges">
+              Exchanges
+            </NavLink>
           </li>
         </ul>
       </Nav>
