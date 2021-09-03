@@ -30,11 +30,13 @@ function renderRows(columns: TableColumn[], rows: TableRow[]) {
 export function DataTable({ rows, columns }: Props) {
   return (
     <TableContainer>
-      <thead>
-        <tr>{renderColumns(columns)}</tr>
-      </thead>
+      <table>
+        <thead>
+          <tr>{renderColumns(columns)}</tr>
+        </thead>
 
-      <tbody>{renderRows(columns, rows as TableRow[])}</tbody>
+        <tbody>{renderRows(columns, rows as TableRow[])}</tbody>
+      </table>
     </TableContainer>
   );
 }
