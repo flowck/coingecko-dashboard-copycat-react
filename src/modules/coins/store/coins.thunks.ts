@@ -1,16 +1,13 @@
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../../../store";
+import { getCoinsPerMarket } from "./coins.services";
 import { getCoins, setCoinError } from "./coins.actions";
-import { CoinsService } from "../services/coinsService";
-import { cacheService } from "../../../common/services/CacheService";
-
-const coinsService = new CoinsService(cacheService);
 
 export const fetchCoinsPerMarket = (vsCurrency = "USD"): ThunkAction<void, RootState, unknown, AnyAction> => {
   return async (dispatch) => {
     try {
-      const coins = await coinsService.getCoinsPerMarket(vsCurrency);
+      const coins = await getCoinsPerMarket(vsCurrency);
       dispatch(getCoins(coins));
     } catch (error) {
       dispatch(setCoinError(error));

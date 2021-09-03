@@ -1,4 +1,4 @@
-import { CoinsModuleState } from "../coins";
+import { CoinsModuleState } from "./coins.interfaces";
 import { COINS_ACTIONS } from "./coins.actions";
 
 const _state: CoinsModuleState = {

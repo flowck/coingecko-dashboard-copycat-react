@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { NavBar } from "../components/navBar/navBar";
 import { Header } from "../components/header/header";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import ListCoins from "../../../../modules/coins/views/listCoins";
+import CoinsList from "../../../../modules/coins/views/coins.list";
 import { ListCompanies } from "../../../../modules/finance/views/ListCompanies";
 import ListExchanges from "../../../../modules/exchanges/views/listExchanges/listExchanges";
 import SingleExchange from "../../../../modules/exchanges/views/singleExchange/singleExchange";
+import { CoinsDetails } from "../../../../modules/coins/views/coins.details";
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -30,8 +31,12 @@ export function Dashboard() {
 
       <DashboardViews>
         <Switch>
+          <Route path={`${match.path}/coins/:coinId`}>
+            <CoinsDetails></CoinsDetails>
+          </Route>
+
           <Route path={`${match.path}/coins`}>
-            <ListCoins></ListCoins>
+            <CoinsList></CoinsList>
           </Route>
 
           <Route path={`${match.path}/exchanges/:exchangeId`}>
