@@ -60,7 +60,7 @@ function ListCoins({ fetchCoins, coins }: ListCoinsProps) {
     <section>
       <ViewTitle title="Cryptocurrency Prices by Market Cap" />
 
-      {coins.length ? <DataTable rows={coins} columns={columns}></DataTable> : null}
+      {coins.length ? <DataTable rows={coins} columns={columns} /> : null}
     </section>
   );
 }
