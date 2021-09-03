@@ -1,4 +1,5 @@
 export interface Coin {
+  id: string;
   index: number;
   symbol: string;
   key: string;

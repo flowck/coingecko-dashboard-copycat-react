@@ -1,9 +1,10 @@
 import { Action } from "redux";
-import { Coin } from "../coins";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { ThunkDispatch } from "redux-thunk";
 import { RootState } from "../../../store";
 import { useEffect, useState } from "react";
+import { Coin } from "../store/coins.interfaces";
 import { coinsSelector } from "../store/coins.selectors";
 import { numberToCurrency } from "../../../common/utils";
 import { fetchCoinsPerMarket } from "../store/coins.thunks";
@@ -11,12 +12,12 @@ import { CoinColumnName } from "../components/coinColumnName";
 import { DataTable } from "../../../common/components/dataTable/dataTable";
 import { ViewTitle } from "../../../common/components/viewTitle/viewTitle";
 
-interface ListCoinsProps {
+interface CoinsListProps {
   coins: Coin[];
   fetchCoins(vsCurrency: string): void;
 }
 
-function ListCoins({ fetchCoins, coins }: ListCoinsProps) {
+function CoinsList({ fetchCoins, coins }: CoinsListProps) {
   const [vsCurrency] = useState("usd");
 
   const columns = [
@@ -25,7 +26,11 @@ function ListCoins({ fetchCoins, coins }: ListCoinsProps) {
       name: "name",
       label: "Name",
       component: (row: Coin) => {
-        return <CoinColumnName coin={row} />;
+        return (
+          <Link to={`/dashboard/coins/${row.id}`}>
+            <CoinColumnName coin={row} />
+          </Link>
+        );
       },
     },
     {
@@ -77,4 +82,4 @@ function mapDispatchToProps(dispatch: ThunkDispatch<RootState, void, Action>) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListCoins);
+export default connect(mapStateToProps, mapDispatchToProps)(CoinsList);

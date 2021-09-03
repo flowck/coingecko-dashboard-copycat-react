@@ -1,4 +1,4 @@
-import { CoinMarket } from "../coins";
+import { CoinMarket } from "./coins.interfaces";
 
 export enum COINS_ACTIONS {
   GET_COINS = "GET_COINS",

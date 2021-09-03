@@ -1,16 +1,17 @@
 import { createSelector } from "reselect";
-import { CoinsModuleState } from "../coins";
+import { CoinsModuleState } from "./coins.interfaces";
 
 const getCoinsSelector = (state: CoinsModuleState) => state.coins;
 
 export const coinsSelector = createSelector(getCoinsSelector, (coins) => {
   return coins.map((coin, index) => {
     return {
-      index: index + 1,
-      symbol: coin.symbol,
+      id: coin.id,
       key: coin.id,
       name: coin.name,
+      index: index + 1,
       image: coin.image,
+      symbol: coin.symbol,
       price: coin.current_price,
       marketCapital: coin.market_cap,
       lastDayVolume: coin.total_volume,
