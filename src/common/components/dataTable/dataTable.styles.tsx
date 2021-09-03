@@ -67,6 +67,10 @@ export const TableContainer = styled.div`
     tr {
       height: 60px;
       border-bottom: 1px solid #dee2e6;
+
+      td[data-is-sorted="true"] {
+        background-color: #f9f9f9;
+      }
     }
   }
 `;

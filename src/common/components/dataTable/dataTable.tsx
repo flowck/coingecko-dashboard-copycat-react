@@ -30,14 +30,16 @@ function renderColumns(
 /**
  * Render each column's cell value or a component passed as an attribute of each column
  */
-function renderCells(columns: TableColumn[], row: TableRow) {
+function renderCells(columns: TableColumn[], row: TableRow, sortColumn: string) {
   return columns.map((column, index) => (
-    <td key={index}>{column.component ? column.component(row) : `${row[column.name]}`}</td>
+    <td data-is-sorted={sortColumn === column.name} key={index}>
+      {column.component ? column.component(row) : `${row[column.name]}`}
+    </td>
   ));
 }
 
-function renderRows(columns: TableColumn[], rows: TableRow[]) {
-  return rows.map((row, index) => <tr key={index}>{renderCells(columns, row)}</tr>);
+function renderRows(columns: TableColumn[], rows: TableRow[], sortColumn: string) {
+  return rows.map((row, index) => <tr key={index}>{renderCells(columns, row, sortColumn)}</tr>);
 }
 
 export function DataTable({ rows, columns }: DataTableProps) {
@@ -59,7 +61,7 @@ export function DataTable({ rows, columns }: DataTableProps) {
           <tr>{renderColumns(columns, sortDirection, sortColumn, onSortColumn)}</tr>
         </thead>
 
-        <tbody>{renderRows(columns, data)}</tbody>
+        <tbody>{renderRows(columns, data, sortColumn)}</tbody>
       </table>
     </TableContainer>
   );
