@@ -11,7 +11,7 @@ interface OnItemClick {
   (categoryId: string): void;
 }
 
-function renderCategories(items: CoinsCategory[], onItemClick: OnItemClick) {
+function renderCategoriesListItem(items: CoinsCategory[], onItemClick: OnItemClick) {
   if (!items.length) {
     return null;
   }
@@ -24,7 +24,7 @@ function renderCategories(items: CoinsCategory[], onItemClick: OnItemClick) {
 }
 
 export function Categories({ items }: Props) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const categoriesListElement = useRef<any>(null);
   const [categories, setCategories] = useState(items);
   const [closeCategoriesTimeout, setCloseCategoriesTimeout] = useState(-1);
@@ -87,12 +87,18 @@ export function Categories({ items }: Props) {
 
   return (
     <CategoriesContainer>
-      <Button label="All categories" onClick={onButtonClick}></Button>
+      <Button id="toggleCategories" label="All categories" onClick={onButtonClick}></Button>
 
       {isOpen ? (
-        <CategoriesList tabIndex={0} onClick={onCategoriesListClick} onBlurCapture={onBlur} ref={categoriesListElement}>
+        <CategoriesList
+          tabIndex={0}
+          id="categoriesList"
+          onBlurCapture={onBlur}
+          ref={categoriesListElement}
+          onClick={onCategoriesListClick}
+        >
           <input type="text" onFocus={onInputFocus} onInput={onFiltering} placeholder="Filter categories" />
-          <ul>{renderCategories(categories, onItemClick)}</ul>
+          <ul>{renderCategoriesListItem(categories, onItemClick)}</ul>
         </CategoriesList>
       ) : null}
     </CategoriesContainer>

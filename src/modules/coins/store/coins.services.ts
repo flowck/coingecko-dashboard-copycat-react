@@ -22,6 +22,8 @@ export async function getCoinsCategories() {
   const key = "cg.coinsCategories";
   let categories = cacheService.getItem(key);
 
+  console.log(JSON.stringify(categories));
+
   // Return cached
   if (categories) {
     return categories;

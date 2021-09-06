@@ -1,10 +1,15 @@
 import { ButtonContainer } from "./button.style";
 
 interface Props {
-  label: String;
+  id?: string;
+  label: string;
   onClick(): unknown;
 }
 
-export function Button({ onClick, label }: Props) {
-  return <ButtonContainer onClick={onClick}>{label}</ButtonContainer>;
+export function Button({ onClick, label, id }: Props) {
+  return (
+    <ButtonContainer onClick={onClick} id={id}>
+      {label}
+    </ButtonContainer>
+  );
 }
