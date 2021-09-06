@@ -1,23 +1,31 @@
 import { Action } from "redux";
 import { connect } from "react-redux";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ThunkDispatch } from "redux-thunk";
 import { RootState } from "../../../store";
 import { useEffect, useState } from "react";
-import { Coin } from "../store/coins.interfaces";
 import { coinsSelector } from "../store/coins.selectors";
 import { numberToCurrency } from "../../../common/utils";
-import { fetchCoinsPerMarket } from "../store/coins.thunks";
 import { CoinColumnName } from "../components/coinColumnName";
+import { Coin, CoinsCategory } from "../store/coins.interfaces";
+import { Categories } from "../components/categories/categories";
 import { DataTable } from "../../../common/components/dataTable/dataTable";
 import { ViewTitle } from "../../../common/components/viewTitle/viewTitle";
+import { fetchCoinsCategories, fetchCoinsPerMarket } from "../store/coins.thunks";
 
 interface CoinsListProps {
   coins: Coin[];
+  categories: CoinsCategory[];
+  fetchCategories(): void;
   fetchCoins(vsCurrency: string): void;
 }
 
-function CoinsList({ fetchCoins, coins }: CoinsListProps) {
+const FiltersContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
+function CoinsList({ fetchCoins, fetchCategories, categories, coins }: CoinsListProps) {
   const [vsCurrency] = useState("usd");
 
   const columns = [
@@ -59,11 +67,16 @@ function CoinsList({ fetchCoins, coins }: CoinsListProps) {
 
   useEffect(() => {
     fetchCoins(vsCurrency);
-  }, [fetchCoins, vsCurrency]);
+    fetchCategories();
+  }, [fetchCoins, fetchCategories, vsCurrency]);
 
   return (
     <section>
       <ViewTitle title="Cryptocurrency Prices by Market Cap" />
+
+      <FiltersContainer>
+        <Categories items={categories} />
+      </FiltersContainer>
 
       {coins.length ? <DataTable rows={coins} columns={columns} /> : null}
     </section>
@@ -73,12 +86,14 @@ function CoinsList({ fetchCoins, coins }: CoinsListProps) {
 function mapStateToProps(state: RootState, props: any) {
   return {
     coins: coinsSelector(state.coinsModule),
+    categories: state.coinsModule.categories,
   };
 }
 
 function mapDispatchToProps(dispatch: ThunkDispatch<RootState, void, Action>) {
   return {
     fetchCoins: (vsCurrency: string) => dispatch(fetchCoinsPerMarket(vsCurrency)),
+    fetchCategories: () => dispatch(fetchCoinsCategories()),
   };
 }
 
