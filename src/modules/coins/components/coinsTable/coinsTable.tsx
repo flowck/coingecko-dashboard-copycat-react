@@ -1,9 +1,9 @@
-import { Coin } from "../../store/coins.interfaces";
-import { DataTable } from "../../../../common/components/dataTable/dataTable";
 import { Link } from "react-router-dom";
-import { numberToCurrency } from "../../../../common/utils";
-import { CoinColumnName } from "../coinColumnName";
 import styled from "styled-components";
+import { numberToCurrency } from "@common/utils";
+import { CoinColumnName } from "../coinColumnName";
+import { Coin } from "@coins/store/coins.interfaces";
+import { DataTable } from "@common/components/dataTable/dataTable";
 
 interface Props {
   coins: Coin[];

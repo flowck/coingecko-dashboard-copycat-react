@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { RootState } from "../../../../store";
-import { ExchangeName } from "./listExchanges.styles";
-import { Exchange } from "../../store/exchanges.interface";
-import { getExchanges } from "../../store/exchanges.thunks";
-import { AppThunkDispatch } from "../../../../store/store.types";
-import { DataTable } from "../../../../common/components/dataTable/dataTable";
-import { ViewTitle } from "../../../../common/components/viewTitle/viewTitle";
+import { RootState } from "@store/index";
 import { Link } from "react-router-dom";
-import { TrustScore } from "../../components/trustScore/trustScore";
-import { numberToCurrency } from "../../../../common/utils";
+import { numberToCurrency } from "@common/utils";
+import { AppThunkDispatch } from "@store/store.types";
+import { ExchangeName } from "./listExchanges.styles";
+import { Exchange } from "@exchanges/store/exchanges.interface";
+import { getExchanges } from "@exchanges/store/exchanges.thunks";
+import { DataTable } from "@common/components/dataTable/dataTable";
+import { ViewTitle } from "@common/components/viewTitle/viewTitle";
+import { TrustScore } from "@exchanges/components/trustScore/trustScore";
 
 interface Props {
   exchanges: Exchange[];

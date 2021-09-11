@@ -1,13 +1,13 @@
 import { Action } from "redux";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "@store/index";
 import { ThunkDispatch } from "redux-thunk";
-import { RootState } from "../../../store";
 import { useEffect, useState } from "react";
-import { Coin, CoinsCategory } from "../store/coins.interfaces";
-import { CoinsTable } from "../components/coinsTable/coinsTable";
-import { Categories } from "../components/categories/categories";
-import { ViewTitle } from "../../../common/components/viewTitle/viewTitle";
+import { Coin, CoinsCategory } from "@coins/store/coins.interfaces";
+import { CoinsTable } from "@coins/components/coinsTable/coinsTable";
+import { Categories } from "@coins/components/categories/categories";
+import { ViewTitle } from "@common/components/viewTitle/viewTitle";
 import { fetchCoinsCategories, fetchCoinsPerMarket } from "../store/coins.thunks";
 
 interface CoinsListProps {
