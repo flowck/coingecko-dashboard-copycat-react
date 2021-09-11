@@ -14,7 +14,7 @@ interface CoinsListProps {
   coins: Coin[];
   fetchCategories(): void;
   categories: CoinsCategory[];
-  fetchCoins(vsCurrency: string, category?: string): void;
+  fetchCoins(vsCurrency: string, page?: number, category?: string): void;
 }
 
 const FiltersContainer = styled.div`
@@ -31,8 +31,12 @@ function CoinsList({ fetchCoins, fetchCategories, categories, coins }: CoinsList
   }, [fetchCoins, fetchCategories, vsCurrency]);
 
   useEffect(() => {
-    fetchCoins(vsCurrency, selectedCategory);
+    fetchCoins(vsCurrency, 1, selectedCategory);
   }, [selectedCategory, fetchCoins, vsCurrency]);
+
+  const paginationHandler = (page: number) => {
+    fetchCoins(vsCurrency, page, selectedCategory);
+  };
 
   return (
     <section>
@@ -42,7 +46,7 @@ function CoinsList({ fetchCoins, fetchCategories, categories, coins }: CoinsList
         <Categories items={categories} onSelectCategory={(category) => setSelectedCategory(category)} />
       </FiltersContainer>
 
-      <CoinsTable coins={coins} vsCurrency={vsCurrency} />
+      <CoinsTable onPaginate={paginationHandler} coins={coins} vsCurrency={vsCurrency} />
     </section>
   );
 }
@@ -56,7 +60,8 @@ function mapStateToProps(state: RootState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<RootState, void, Action>) {
   return {
-    fetchCoins: (vsCurrency: string, category?: string) => dispatch(fetchCoinsPerMarket(vsCurrency, category)),
+    fetchCoins: (vsCurrency: string, page = 1, category?: string) =>
+      dispatch(fetchCoinsPerMarket(vsCurrency, page, category)),
     fetchCategories: () => dispatch(fetchCoinsCategories()),
   };
 }

@@ -8,13 +8,14 @@ import { DataTable } from "@common/components/dataTable/dataTable";
 interface Props {
   coins: Coin[];
   vsCurrency: string;
+  onPaginate(page: number): unknown;
 }
 
 const ColoredStatusColumn = styled.span<Record<string, string | number>>`
   color: ${({ value }) => (value && value >= 0 ? "#4eaf0a" : "#e15241")};
 `;
 
-export function CoinsTable({ coins, vsCurrency }: Props) {
+export function CoinsTable({ coins, vsCurrency, onPaginate }: Props) {
   const columns = [
     {
       name: "name",
@@ -61,5 +62,5 @@ export function CoinsTable({ coins, vsCurrency }: Props) {
     },
   ];
 
-  return coins.length ? <DataTable rows={coins} columns={columns} /> : null;
+  return coins.length ? <DataTable onPrev={onPaginate} onNext={onPaginate} rows={coins} columns={columns} /> : null;
 }

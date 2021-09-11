@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const border = "1px solid #dee2e6";
+
 export const TableContainer = styled.div`
   overflow-x: auto;
 
@@ -25,7 +27,7 @@ export const TableContainer = styled.div`
     th {
       cursor: pointer;
       position: relative;
-      border-top: 1px solid #dee2e6;
+      border-top: ${border};
       border-bottom: 2px solid #dee2e6;
 
       &::after {
@@ -66,11 +68,39 @@ export const TableContainer = styled.div`
   tbody  {
     tr {
       height: 60px;
-      border-bottom: 1px solid #dee2e6;
+      border-bottom: ${border};
 
       td[data-is-sorted="true"] {
         background-color: #f9f9f9;
       }
+    }
+  }
+`;
+
+export const TablePaginationControls = styled.div`
+  margin-top: 30px;
+
+  button {
+    font-size: 13px;
+    cursor: pointer;
+    color: #4a4a4a;
+    border: ${border};
+    padding: 5px 10px;
+    border-radius: 3px;
+    background-color: #fff;
+
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &:last-child {
+      margin-left: 10px;
+    }
+
+    &:hover {
+      color: #fff;
+      background-color: #8dc647;
     }
   }
 `;
