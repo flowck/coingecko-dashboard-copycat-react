@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sorter } from "./dataTable.service";
 import { TableContainer } from "./dataTable.styles";
 import { SortDirection, TableRow } from "./dataTable.types";
@@ -44,6 +44,11 @@ export function DataTable({ rows, columns }: DataTableProps) {
   const [sortColumn, setSortColumn] = useState("");
   const [data, setData] = useState<TableRow[]>(rows as TableRow[]);
   const [sortDirection, setSortDirection] = useState<SortDirection>("ascending");
+
+  // Update data on rows change
+  useEffect(() => {
+    setData(rows as TableRow[]);
+  }, [rows]);
 
   const onSortColumn = (column: string, direction: SortDirection): void => {
     const _directiton = direction === "ascending" ? "descending" : "ascending";

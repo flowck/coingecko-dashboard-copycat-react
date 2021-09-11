@@ -16,9 +16,9 @@ import { fetchCoinsCategories, fetchCoinsPerMarket } from "../store/coins.thunks
 
 interface CoinsListProps {
   coins: Coin[];
-  categories: CoinsCategory[];
   fetchCategories(): void;
-  fetchCoins(vsCurrency: string): void;
+  categories: CoinsCategory[];
+  fetchCoins(vsCurrency: string, category?: string): void;
 }
 
 const FiltersContainer = styled.div`
@@ -27,6 +27,7 @@ const FiltersContainer = styled.div`
 
 function CoinsList({ fetchCoins, fetchCategories, categories, coins }: CoinsListProps) {
   const [vsCurrency] = useState("usd");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const columns = [
     { label: "#", name: "index" },
@@ -70,12 +71,16 @@ function CoinsList({ fetchCoins, fetchCategories, categories, coins }: CoinsList
     fetchCategories();
   }, [fetchCoins, fetchCategories, vsCurrency]);
 
+  useEffect(() => {
+    fetchCoins(vsCurrency, selectedCategory);
+  }, [selectedCategory, fetchCoins, vsCurrency]);
+
   return (
     <section>
       <ViewTitle title="Cryptocurrency Prices by Market Cap" />
 
       <FiltersContainer>
-        <Categories items={categories} />
+        <Categories items={categories} onSelectCategory={(category) => setSelectedCategory(category)} />
       </FiltersContainer>
 
       {coins.length ? <DataTable rows={coins} columns={columns} /> : null}
@@ -92,7 +97,7 @@ function mapStateToProps(state: RootState, props: any) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<RootState, void, Action>) {
   return {
-    fetchCoins: (vsCurrency: string) => dispatch(fetchCoinsPerMarket(vsCurrency)),
+    fetchCoins: (vsCurrency: string, category?: string) => dispatch(fetchCoinsPerMarket(vsCurrency, category)),
     fetchCategories: () => dispatch(fetchCoinsCategories()),
   };
 }

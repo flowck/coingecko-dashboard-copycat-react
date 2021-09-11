@@ -1,18 +1,25 @@
+import axios from "axios";
 import { CoinMarket, CoinsCategory } from "./coins.interfaces";
 import { cacheService } from "../../../common/services/CacheService";
-import axios from "axios";
 
 const cacheKey = "cg.coinsPerMarket";
 
-export async function getCoinsPerMarket(vsCurrency: string): Promise<CoinMarket[]> {
-  let coins = cacheService.getItem<CoinMarket[]>(cacheKey);
+export async function getCoinsPerMarket(vsCurrency: string, category = ""): Promise<CoinMarket[]> {
+  const key = `${cacheKey}.${vsCurrency}.${category}`;
+  let coins = cacheService.getItem<CoinMarket[]>(key);
+
   if (coins) {
     return coins;
   }
 
-  const options = { params: { vs_currency: vsCurrency, per_page: 100 } };
+  let options = { params: { vs_currency: vsCurrency, per_page: 100 } };
+
+  if (category) {
+    (options.params as Record<string, string | number>) = { ...options.params, category };
+  }
+
   const { data } = await axios.get<CoinMarket[]>("/coins/markets", options);
-  cacheService.setItem(cacheKey, data);
+  cacheService.setItem(key, data);
   return data;
 }
 
@@ -21,8 +28,6 @@ export async function getCoinsPerMarket(vsCurrency: string): Promise<CoinMarket[
 export async function getCoinsCategories() {
   const key = "cg.coinsCategories";
   let categories = cacheService.getItem(key);
-
-  console.log(JSON.stringify(categories));
 
   // Return cached
   if (categories) {

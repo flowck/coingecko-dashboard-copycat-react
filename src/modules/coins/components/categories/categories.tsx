@@ -5,10 +5,11 @@ import { CategoriesContainer, CategoriesList, CategoriesListItem } from "./categ
 
 interface Props {
   items: CoinsCategory[];
+  onSelectCategory(category: string): void;
 }
 
 interface OnItemClick {
-  (categoryId: string): void;
+  (category: CoinsCategory): void;
 }
 
 function renderCategoriesListItem(items: CoinsCategory[], onItemClick: OnItemClick) {
@@ -17,16 +18,17 @@ function renderCategoriesListItem(items: CoinsCategory[], onItemClick: OnItemCli
   }
 
   return items.map((item) => (
-    <CategoriesListItem key={item.category_id} onClick={() => onItemClick(item.category_id)}>
+    <CategoriesListItem key={item.category_id} onClick={() => onItemClick(item)}>
       {item.name}
     </CategoriesListItem>
   ));
 }
 
-export function Categories({ items }: Props) {
+export function Categories({ items, onSelectCategory }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const categoriesListElement = useRef<any>(null);
   const [categories, setCategories] = useState(items);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [closeCategoriesTimeout, setCloseCategoriesTimeout] = useState(-1);
 
   useEffect(() => {
@@ -58,7 +60,9 @@ export function Categories({ items }: Props) {
     window.clearTimeout(closeCategoriesTimeout);
   };
 
-  const onItemClick = (categoryId: string) => {
+  const onItemClick = (category: CoinsCategory) => {
+    setSelectedCategory(category.name);
+    onSelectCategory(category.category_id);
     setIsOpen(false);
   };
 
@@ -87,7 +91,7 @@ export function Categories({ items }: Props) {
 
   return (
     <CategoriesContainer>
-      <Button id="toggleCategories" label="All categories" onClick={onButtonClick}></Button>
+      <Button id="toggleCategories" label={selectedCategory || "All categories"} onClick={onButtonClick}></Button>
 
       {isOpen ? (
         <CategoriesList
