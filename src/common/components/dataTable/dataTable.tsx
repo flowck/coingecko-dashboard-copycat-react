@@ -18,11 +18,9 @@ function renderColumns(
     const _sortDirection = sortColumn === column.name ? sortDirection : undefined;
 
     return (
-      <>
-        <th key={index} onClick={clickHandler} aria-sort={_sortDirection}>
-          {column.label || column.name}
-        </th>
-      </>
+      <th key={index} onClick={clickHandler} aria-sort={_sortDirection}>
+        {column.label || column.name}
+      </th>
     );
   });
 }

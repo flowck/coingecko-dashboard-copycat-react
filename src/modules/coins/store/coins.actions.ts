@@ -6,7 +6,9 @@ export enum COINS_ACTIONS {
   SET_VS_CURRENY = "SET_VS_CURRENCY",
 }
 
-export const setCoinError = (payload: string) => ({ type: COINS_ACTIONS.SET_ERROR, payload });
+export const SET_COINS_CATEGORIES = "SET_COINS_CATEGORIES";
+
+export const setCoinError = (payload: unknown) => ({ type: COINS_ACTIONS.SET_ERROR, payload });
 export const getCoins = (payload: CoinMarket[]) => ({ type: COINS_ACTIONS.GET_COINS, payload });
 export const setVsCurrency = (payload: string) => ({ type: COINS_ACTIONS.SET_VS_CURRENY, payload });
 

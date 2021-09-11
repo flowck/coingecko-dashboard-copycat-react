@@ -1,3 +1,8 @@
+export interface CoinsCategory {
+  name: string;
+  category_id: string;
+}
+
 export interface Coin {
   id: string;
   index: number;
@@ -14,6 +19,7 @@ export interface Coin {
 export interface CoinsModuleState {
   error: string;
   coins: CoinMarket[];
+  categories: CoinsCategory[];
   coinsPerMarketVsCurrency: string;
 }
 
