@@ -1,4 +1,4 @@
-import { CoinMarket } from "./coins.interfaces";
+import { Coin } from "./coins.interfaces";
 
 export enum COINS_ACTIONS {
   GET_COINS = "GET_COINS",
@@ -9,7 +9,7 @@ export enum COINS_ACTIONS {
 export const SET_COINS_CATEGORIES = "SET_COINS_CATEGORIES";
 
 export const setCoinError = (payload: unknown) => ({ type: COINS_ACTIONS.SET_ERROR, payload });
-export const getCoins = (payload: CoinMarket[]) => ({ type: COINS_ACTIONS.GET_COINS, payload });
+export const getCoins = (payload: Coin[]) => ({ type: COINS_ACTIONS.GET_COINS, payload });
 export const setVsCurrency = (payload: string) => ({ type: COINS_ACTIONS.SET_VS_CURRENY, payload });
 
 export type CoinsActionType = COINS_ACTIONS.GET_COINS | COINS_ACTIONS.SET_ERROR;
