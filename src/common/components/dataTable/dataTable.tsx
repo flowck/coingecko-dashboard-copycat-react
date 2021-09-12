@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { sorter } from "./dataTable.service";
-import { TableContainer } from "./dataTable.styles";
 import { SortDirection, TableRow } from "./dataTable.types";
-import { TableColumn, OnSortColumn, DataTableProps } from "./dataTable.interfaces";
+import { TableContainer, TablePaginationControls } from "./dataTable.styles";
+import { TableColumn, OnSortColumn, DataTableProps, PaginationHandler } from "./dataTable.interfaces";
 
 /**
  * Render each column and with an event handler for sort operations
@@ -40,10 +40,23 @@ function renderRows(columns: TableColumn[], rows: TableRow[], sortColumn: string
   return rows.map((row, index) => <tr key={index}>{renderCells(columns, row, sortColumn)}</tr>);
 }
 
-export function DataTable({ rows, columns }: DataTableProps) {
+function renderPaginationControls(onPrev: PaginationHandler, onNext: PaginationHandler, page: number) {
+  const isDisabled = page === 1;
+  return (
+    <TablePaginationControls>
+      <button onClick={onPrev} disabled={isDisabled}>
+        {"‹ Prev"}
+      </button>
+      <button onClick={onNext}> {"Next ›"} </button>
+    </TablePaginationControls>
+  );
+}
+
+export function DataTable({ rows, columns, onPrev, onNext }: DataTableProps) {
   const [sortColumn, setSortColumn] = useState("");
   const [data, setData] = useState<TableRow[]>(rows as TableRow[]);
   const [sortDirection, setSortDirection] = useState<SortDirection>("ascending");
+  const [page, setPage] = useState(1);
 
   // Update data on rows change
   useEffect(() => {
@@ -57,6 +70,20 @@ export function DataTable({ rows, columns }: DataTableProps) {
     setData([...data].sort(sorter(column, _directiton)));
   };
 
+  const nextPage = () => {
+    if (onNext) {
+      onNext(page + 1);
+      setPage(page + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (onPrev && page > 1) {
+      onPrev(page - 1);
+      setPage(page - 1);
+    }
+  };
+
   return (
     <TableContainer>
       <table>
@@ -66,6 +93,7 @@ export function DataTable({ rows, columns }: DataTableProps) {
 
         <tbody>{renderRows(columns, data, sortColumn)}</tbody>
       </table>
+      {onPrev && onNext ? renderPaginationControls(prevPage, nextPage, page) : null}
     </TableContainer>
   );
 }

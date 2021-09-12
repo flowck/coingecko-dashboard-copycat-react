@@ -13,4 +13,10 @@ export interface TableColumn {
 export interface DataTableProps {
   rows: unknown[];
   columns: TableColumn[];
+  onPrev?(page: number): void;
+  onNext?(page: number): void;
+}
+
+export interface PaginationHandler {
+  (): void;
 }
