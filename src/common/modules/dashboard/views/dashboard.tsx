@@ -3,8 +3,9 @@ import CoinsList from "@coins/views/coins.list";
 import { Header } from "../components/header/header";
 import { NavBar } from "../components/navBar/navBar";
 import { CoinsDetails } from "@coins/views/coins.details";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
 import ListExchanges from "@exchanges/views/listExchanges/listExchanges";
+import { Breadcrumbs } from "@common/components/breadcrumbs/breadcrumbs";
 import SingleExchange from "@exchanges/views/singleExchange/singleExchange";
 
 const DashboardContainer = styled.section`
@@ -19,6 +20,10 @@ const DashboardViews = styled.section`
   min-height: calc(100vh -40px);
 `;
 
+const DashboardBreadcrumbs = styled.div`
+  margin-bottom: 30px;
+`;
+
 export function Dashboard() {
   const match = useRouteMatch();
 
@@ -29,7 +34,14 @@ export function Dashboard() {
       <NavBar></NavBar>
 
       <DashboardViews>
+        <DashboardBreadcrumbs>
+          <Breadcrumbs />
+        </DashboardBreadcrumbs>
         <Switch>
+          <Route exact path="/dashboard">
+            <Redirect to="/dashboard/coins"></Redirect>
+          </Route>
+
           <Route path={`${match.path}/coins/:coinId`}>
             <CoinsDetails></CoinsDetails>
           </Route>
