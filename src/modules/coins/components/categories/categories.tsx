@@ -1,5 +1,5 @@
-import { CoinsCategory } from "../../store/coins.interfaces";
-import { Button } from "../../../../common/components/button/button";
+import { Button } from "@common/components/button/button";
+import { CoinsCategory } from "@coins/store/coins.interfaces";
 import { useEffect, useRef, useState, FocusEvent, FormEvent } from "react";
 import { CategoriesContainer, CategoriesList, CategoriesListItem } from "./categories.style";
 

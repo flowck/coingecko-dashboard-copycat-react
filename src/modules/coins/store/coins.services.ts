@@ -1,12 +1,12 @@
 import axios from "axios";
-import { CoinMarket, CoinsCategory } from "./coins.interfaces";
+import { Coin, CoinsCategory } from "./coins.interfaces";
 import { cacheService } from "../../../common/services/CacheService";
 
 const cacheKey = "cg.coinsPerMarket";
 
-export async function getCoinsPerMarket(vsCurrency: string, category = ""): Promise<CoinMarket[]> {
+export async function getCoinsPerMarket(vsCurrency: string, category = ""): Promise<Coin[]> {
   const key = `${cacheKey}.${vsCurrency}.${category}`;
-  let coins = cacheService.getItem<CoinMarket[]>(key);
+  let coins = cacheService.getItem<Coin[]>(key);
 
   if (coins) {
     return coins;
@@ -18,7 +18,7 @@ export async function getCoinsPerMarket(vsCurrency: string, category = ""): Prom
     (options.params as Record<string, string | number>) = { ...options.params, category };
   }
 
-  const { data } = await axios.get<CoinMarket[]>("/coins/markets", options);
+  const { data } = await axios.get<Coin[]>("/coins/markets", options);
   cacheService.setItem(key, data);
   return data;
 }

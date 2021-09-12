@@ -7,7 +7,9 @@ enzyme.configure({ adapter: new Adapter() });
 
 describe("Categories", () => {
   it("On button click it should open the categories' list", () => {
-    const wrapper = shallow(<Categories items={categories}></Categories>);
+    const wrapper = shallow(
+      <Categories items={categories} onSelectCategory={(category: string) => console.log(category)}></Categories>
+    );
     const button = wrapper.find("#toggleCategories");
     button.simulate("click");
     expect(wrapper.find("#categoriesList").exists()).toBeTruthy();

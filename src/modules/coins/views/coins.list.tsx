@@ -1,17 +1,13 @@
 import { Action } from "redux";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { RootState } from "@store/index";
 import { ThunkDispatch } from "redux-thunk";
-import { RootState } from "../../../store";
 import { useEffect, useState } from "react";
-import { coinsSelector } from "../store/coins.selectors";
-import { numberToCurrency } from "../../../common/utils";
-import { CoinColumnName } from "../components/coinColumnName";
-import { Coin, CoinsCategory } from "../store/coins.interfaces";
-import { Categories } from "../components/categories/categories";
-import { DataTable } from "../../../common/components/dataTable/dataTable";
-import { ViewTitle } from "../../../common/components/viewTitle/viewTitle";
+import { Coin, CoinsCategory } from "@coins/store/coins.interfaces";
+import { CoinsTable } from "@coins/components/coinsTable/coinsTable";
+import { Categories } from "@coins/components/categories/categories";
+import { ViewTitle } from "@common/components/viewTitle/viewTitle";
 import { fetchCoinsCategories, fetchCoinsPerMarket } from "../store/coins.thunks";
 
 interface CoinsListProps {
@@ -28,43 +24,6 @@ const FiltersContainer = styled.div`
 function CoinsList({ fetchCoins, fetchCategories, categories, coins }: CoinsListProps) {
   const [vsCurrency] = useState("usd");
   const [selectedCategory, setSelectedCategory] = useState("");
-
-  const columns = [
-    { label: "#", name: "index" },
-    {
-      name: "name",
-      label: "Name",
-      component: (row: Coin) => {
-        return (
-          <Link to={`/dashboard/coins/${row.id}`}>
-            <CoinColumnName coin={row} />
-          </Link>
-        );
-      },
-    },
-    {
-      label: "Price",
-      name: "price",
-      component: (row: Coin) => {
-        return <span>{numberToCurrency(row.price, vsCurrency)}</span>;
-      },
-    },
-    { label: "24h", name: "lastDayPriceChange" },
-    {
-      label: "24h Volume",
-      name: "lastDayVolume",
-      component: (row: Coin) => {
-        return <span>{numberToCurrency(row.lastDayVolume, vsCurrency)}</span>;
-      },
-    },
-    {
-      label: "Mkt Cap",
-      name: "marketCapital",
-      component: (row: Coin) => {
-        return <span>{numberToCurrency(row.marketCapital, vsCurrency)}</span>;
-      },
-    },
-  ];
 
   useEffect(() => {
     fetchCoins(vsCurrency);
@@ -83,14 +42,14 @@ function CoinsList({ fetchCoins, fetchCategories, categories, coins }: CoinsList
         <Categories items={categories} onSelectCategory={(category) => setSelectedCategory(category)} />
       </FiltersContainer>
 
-      {coins.length ? <DataTable rows={coins} columns={columns} /> : null}
+      <CoinsTable coins={coins} vsCurrency={vsCurrency} />
     </section>
   );
 }
 
-function mapStateToProps(state: RootState, props: any) {
+function mapStateToProps(state: RootState) {
   return {
-    coins: coinsSelector(state.coinsModule),
+    coins: state.coinsModule.coins,
     categories: state.coinsModule.categories,
   };
 }
