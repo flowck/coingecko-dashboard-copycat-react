@@ -1,3 +1,26 @@
+# [1.1.0](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/compare/v1.0.0...v1.1.0) (2021-09-13)
+
+
+### Bug Fixes
+
+* add missing  tag ([968a57e](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/968a57e67b956cb5d27fb8d0ceb8d1ae3711e0a7))
+* add scroll to data-table when resized ([5730d2e](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/5730d2ece6e538aca10201aaf1f067eab75d653b))
+* remove custom test runner ([834ad02](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/834ad02d80f1631a1480689b05d7293f0a785b42))
+
+
+### Features
+
+* add a test case for categories' tooltip ([ee02f6c](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/ee02f6c44d1e21a71166d9aa04aa6cf3cac5df08))
+* add category selector [wip] ([be11969](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/be11969c1b57227c0af7fb721ea1faf6267ffb9f))
+* add pagination ([b44972c](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/b44972ca0e5e821b5086c7a8e160234737cfd508))
+* add sorting feature ([2e03a3a](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/2e03a3aa8994bb4dfbb843149e2b504d36052a9e))
+* filter coins by category ([cdd38a2](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/cdd38a2bed86f98ff0a38235c284b14a747a13c3))
+* format coins fields ([07fa3bf](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/07fa3bfde399fb3c2fb52993cadd24a87b537848))
+* highlight sorted column ([3025eab](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/3025eabb029c805221ada5f25f6e8956db7a0611))
+* setup aliases ([816064e](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/816064e0dfa8395c879f678d6fc0db4083a1c1db))
+* setup aliases ([57399aa](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/57399aac60bd500f8ae0a9f688904ee193a047ab))
+* style actice links ([de69a87](https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react/commit/de69a87bc1f0b24551637e2109b0c492da90bc21))
+
 # 1.0.0 (2021-09-02)
 
 
