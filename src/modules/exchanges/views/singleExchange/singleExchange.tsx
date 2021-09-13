@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import { RootState } from "@store/index";
 import { useParams } from "react-router-dom";
-import { RootState } from "../../../../store";
-import { AppThunkDispatch } from "../../../../store/store.types";
-import { FullExchange } from "../../store/exchanges.interface";
-import { getSingleExchange } from "../../store/exchanges.thunks";
+import { AppThunkDispatch } from "@store/store.types";
+import { FullExchange } from "@exchanges/store/exchanges.interface";
+import { getSingleExchange } from "@exchanges/store/exchanges.thunks";
 
 interface Props {
   exchange: FullExchange | null;

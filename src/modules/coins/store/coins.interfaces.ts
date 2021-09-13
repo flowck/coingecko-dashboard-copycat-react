@@ -1,22 +1,16 @@
-export interface Coin {
-  index: number;
-  symbol: string;
-  key: string;
+export interface CoinsCategory {
   name: string;
-  image: string;
-  price: number;
-  marketCapital: number;
-  lastDayVolume: number;
-  lastDayPriceChange: number;
+  category_id: string;
 }
 
 export interface CoinsModuleState {
   error: string;
-  coins: CoinMarket[];
+  coins: Coin[];
+  categories: CoinsCategory[];
   coinsPerMarketVsCurrency: string;
 }
 
-export interface CoinMarket {
+export interface Coin {
   roi: null;
   id: string;
   ath: number;

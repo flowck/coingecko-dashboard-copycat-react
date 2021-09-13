@@ -10,6 +10,10 @@ export const Container = styled.aside`
 `;
 
 export const Nav = styled.nav`
+  .nav--is-active {
+    color: var(--color-green-gecko);
+  }
+
   ul li {
     a {
       display: block;

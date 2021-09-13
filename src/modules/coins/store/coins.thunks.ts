@@ -1,19 +1,25 @@
-import { AnyAction } from "redux";
-import { ThunkAction } from "redux-thunk";
-import { RootState } from "../../../store";
-import { getCoins, setCoinError } from "./coins.actions";
-import { CoinsService } from "../services/coinsService";
-import { cacheService } from "../../../common/services/CacheService";
+import { AppThunk } from "./../../../store/store.types";
+import { getCoinsCategories, getCoinsPerMarket } from "./coins.services";
+import { getCoins, setCoinError, SET_COINS_CATEGORIES } from "./coins.actions";
 
-const coinsService = new CoinsService(cacheService);
-
-export const fetchCoinsPerMarket = (vsCurrency = "USD"): ThunkAction<void, RootState, unknown, AnyAction> => {
+export const fetchCoinsPerMarket = (vsCurrency = "USD", page = 1, category?: string): AppThunk => {
   return async (dispatch) => {
     try {
-      const coins = await coinsService.getCoinsPerMarket(vsCurrency);
+      const coins = await getCoinsPerMarket(vsCurrency, page, category);
       dispatch(getCoins(coins));
     } catch (error) {
       dispatch(setCoinError(error));
     }
   };
 };
+
+export function fetchCoinsCategories(): AppThunk {
+  return async (dispatch) => {
+    try {
+      const categories = await getCoinsCategories();
+      dispatch({ type: SET_COINS_CATEGORIES, payload: categories });
+    } catch (error) {
+      dispatch(setCoinError(error));
+    }
+  };
+}

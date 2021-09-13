@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Coin } from "../coins";
+import { Coin } from "../store/coins.interfaces";
 
 const CoinNameContainer = styled.div`
   display: flex;

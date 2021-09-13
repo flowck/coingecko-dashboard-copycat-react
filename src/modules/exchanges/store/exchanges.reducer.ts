@@ -1,5 +1,5 @@
+import { AppAction } from "@store/store.types";
 import { SET_EXCHANGE, SET_EXCHANGES } from "./exchanges.constants";
-import { AppAction } from "../../../store/store.types";
 import { Exchange, ExchangesRootState, FullExchange } from "./exchanges.interface";
 
 const defaultState: ExchangesRootState = {
