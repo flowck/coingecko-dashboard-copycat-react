@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CoinsList from "@coins/views/coins.list";
 import { Header } from "../components/header/header";
 import { NavBar } from "../components/navBar/navBar";
-import { CoinsDetails } from "@coins/views/coins.details";
+import CoinsDetails from "@coins/views/coins.details";
 import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
 import ListExchanges from "@exchanges/views/listExchanges/listExchanges";
 import { Breadcrumbs } from "@common/components/breadcrumbs/breadcrumbs";
