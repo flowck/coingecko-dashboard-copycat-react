@@ -11,8 +11,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        name: Release
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        name: Deploy
         uses: ridedott/release-me-action@master
-      - name: Trigger Release
-        run: curl -v -H "Accept:\ application/vnd.github.everest-preview+json" -H "Authorization:\ token ${GITHUB_TOKEN}" https://api.github.com/repos/flowck/coingecko-dashboard-copycat-react/dispatches -d '{ "event_type":\ "deploy-to-prod" }'
+
+      - name: Trigger deployment to production
+        run: curl -v -H "Accept:\ application/vnd.github.everest-preview+json" -H "Authorization:\ token ${GH_TOKEN}" https://api.github.com/repos/flowck/coingecko-dashboard-copycat-react/dispatches -d '{ "event_type":\ "deploy-to-prod" }'

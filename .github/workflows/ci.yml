@@ -24,10 +24,6 @@ jobs:
       - name: Test
         run: npm run test
 
-  trigger-release:
-    if: github.ref == 'refs/heads/main'
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
       - name: Trigger Release
-        run: curl -v -H "Accept:\ application/vnd.github.everest-preview+json" -H "Authorization:\ token ${GITHUB_TOKEN}" https://api.github.com/repos/flowck/coingecko-dashboard-copycat-react/dispatches -d '{ "event_type":\ "semantic-release" }'
+        if: github.ref == 'refs/heads/main'
+        run: curl -v -H "Accept:\ application/vnd.github.everest-preview+json" -H "Authorization:\ token ${GH_TOKEN}" https://api.github.com/repos/flowck/coingecko-dashboard-copycat-react/dispatches -d '{ "event_type":\ "semantic-release" }'
