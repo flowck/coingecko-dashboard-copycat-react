@@ -16,4 +16,7 @@ jobs:
         uses: ridedott/release-me-action@master
 
       - name: Trigger deployment to production
-        run: curl -v -H "Accept:\ application/vnd.github.everest-preview+json" -H "Authorization:\ token ${GH_TOKEN}" https://api.github.com/repos/flowck/coingecko-dashboard-copycat-react/dispatches -d '{ "event_type":\ "deploy-to-prod" }'
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          event_type: deploy-to-prod
