@@ -1,6 +1,7 @@
 name: Deploy
 on:
-  workflow_dispatch:
+  repository_dispatch:
+    types: [deploy-to-prod]
 
 jobs:
   deploy:
