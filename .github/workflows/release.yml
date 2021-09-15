@@ -1,8 +1,7 @@
 name: Release
 on:
-  push:
-    branches:
-      - "main"
+  repository_dispatch:
+    types: [semantic-release]
 
 jobs:
   release:
@@ -15,3 +14,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         name: Release
         uses: ridedott/release-me-action@master
+      - name: Trigger Release
+        run: curl -v -H "Accept:\ application/vnd.github.everest-preview+json" -H "Authorization:\ token ${GITHUB_TOKEN}" https://api.github.com/repos/flowck/coingecko-dashboard-copycat-react/dispatches -d '{ "event_type":\ "deploy-to-prod" }'
