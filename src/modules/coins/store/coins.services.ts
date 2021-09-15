@@ -1,11 +1,9 @@
 import axios from "axios";
-import { Coin, CoinsCategory } from "./coins.interfaces";
-import { cacheService } from "../../../common/services/CacheService";
-
-const cacheKey = "cg.coinsPerMarket";
+import { cacheService } from "@common/services/CacheService";
+import { Coin, CoinDetails, CoinMarketChart, CoinsCategory } from "./coins.interfaces";
 
 export async function getCoinsPerMarket(vsCurrency: string, page = 1, category = ""): Promise<Coin[]> {
-  const key = `${cacheKey}.${vsCurrency}.${category}.${page}`;
+  const key = `cg.coinsPerMarket.${vsCurrency}.${category}.${page}`;
   let coins = cacheService.getItem<Coin[]>(key);
 
   if (coins) {
@@ -23,7 +21,32 @@ export async function getCoinsPerMarket(vsCurrency: string, page = 1, category =
   return data;
 }
 
-// export async function getCoinDetails(id: string) {}
+export async function getCoinDetails(id: string): Promise<CoinDetails> {
+  const key = `cg.coins.details.${id}`;
+  const cached = cacheService.getItem<CoinDetails>(key);
+  if (cached) {
+    return cached;
+  }
+
+  const { data } = await axios.get<CoinDetails>(`/coins/${id}`);
+  cacheService.setItem(key, data);
+
+  return data;
+}
+
+export async function getCoinMarketChart(id: string, vsCurrency: string, days = 30): Promise<any> {
+  const key = `cg.coins.priceChart.${id}.${vsCurrency}`;
+  const cached = cacheService.getItem<CoinMarketChart>(key);
+  if (cached) {
+    return cached;
+  }
+
+  const options = { params: { vs_currency: vsCurrency, days } };
+  const { data } = await axios.get<CoinMarketChart>(`/coins/${id}/market_chart`, options);
+  cacheService.setItem(key, data);
+
+  return data;
+}
 
 export async function getCoinsCategories() {
   const key = "cg.coinsCategories";

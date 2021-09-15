@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { NavBar } from "../components/navBar/navBar";
+import CoinsList from "@coins/views/coins.list";
 import { Header } from "../components/header/header";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
-import CoinsList from "../../../../modules/coins/views/coins.list";
-import { ListCompanies } from "../../../../modules/finance/views/ListCompanies";
-import ListExchanges from "../../../../modules/exchanges/views/listExchanges/listExchanges";
-import SingleExchange from "../../../../modules/exchanges/views/singleExchange/singleExchange";
-import { CoinsDetails } from "../../../../modules/coins/views/coins.details";
+import { NavBar } from "../components/navBar/navBar";
+import CoinsDetails from "@coins/views/coins.details";
+import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
+import ListExchanges from "@exchanges/views/listExchanges/listExchanges";
+import { Breadcrumbs } from "@common/components/breadcrumbs/breadcrumbs";
+import SingleExchange from "@exchanges/views/singleExchange/singleExchange";
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -20,6 +20,10 @@ const DashboardViews = styled.section`
   min-height: calc(100vh -40px);
 `;
 
+const DashboardBreadcrumbs = styled.div`
+  margin-bottom: 30px;
+`;
+
 export function Dashboard() {
   const match = useRouteMatch();
 
@@ -30,7 +34,14 @@ export function Dashboard() {
       <NavBar></NavBar>
 
       <DashboardViews>
+        <DashboardBreadcrumbs>
+          <Breadcrumbs />
+        </DashboardBreadcrumbs>
         <Switch>
+          <Route exact path="/dashboard">
+            <Redirect to="/dashboard/coins"></Redirect>
+          </Route>
+
           <Route path={`${match.path}/coins/:coinId`}>
             <CoinsDetails></CoinsDetails>
           </Route>
@@ -45,10 +56,6 @@ export function Dashboard() {
 
           <Route path={`${match.path}/exchanges`}>
             <ListExchanges></ListExchanges>
-          </Route>
-
-          <Route path={`${match.path}/finance`}>
-            <ListCompanies></ListCompanies>
           </Route>
         </Switch>
       </DashboardViews>
