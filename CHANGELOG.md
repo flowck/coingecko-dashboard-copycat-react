@@ -1,3 +1,31 @@
+# [1.1.0](https://github.com/flowck/coingecko-dashboard-copycat-react/compare/v1.0.0...v1.1.0) (2021-09-15)
+
+
+### Bug Fixes
+
+* add missing  tag ([968a57e](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/968a57e67b956cb5d27fb8d0ceb8d1ae3711e0a7))
+* add scroll to data-table when resized ([5730d2e](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/5730d2ece6e538aca10201aaf1f067eab75d653b))
+* remove custom test runner ([834ad02](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/834ad02d80f1631a1480689b05d7293f0a785b42))
+* remove gitlab config ([5d63551](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/5d6355178f755f15deee671ece174cca64b166a9))
+* repository url ([fbf06fe](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/fbf06fecf40db7730da676e840ef030350811a9e))
+
+
+### Features
+
+* add a test case for categories' tooltip ([ee02f6c](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/ee02f6c44d1e21a71166d9aa04aa6cf3cac5df08))
+* add breadcrumbs ([b8dbe5a](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/b8dbe5a3e4151c17b95e499360479b786d560847))
+* add category selector [wip] ([be11969](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/be11969c1b57227c0af7fb721ea1faf6267ffb9f))
+* add coin details view ([872ea47](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/872ea47f85dac2fb12bacbea4ed090255d926625))
+* add pagination ([b44972c](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/b44972ca0e5e821b5086c7a8e160234737cfd508))
+* add sorting feature ([2e03a3a](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/2e03a3aa8994bb4dfbb843149e2b504d36052a9e))
+* filter coins by category ([cdd38a2](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/cdd38a2bed86f98ff0a38235c284b14a747a13c3))
+* format coins fields ([07fa3bf](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/07fa3bfde399fb3c2fb52993cadd24a87b537848))
+* highlight sorted column ([3025eab](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/3025eabb029c805221ada5f25f6e8956db7a0611))
+* setup aliases ([816064e](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/816064e0dfa8395c879f678d6fc0db4083a1c1db))
+* setup aliases ([57399aa](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/57399aac60bd500f8ae0a9f688904ee193a047ab))
+* style actice links ([de69a87](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/de69a87bc1f0b24551637e2109b0c492da90bc21))
+* use aliases and remove finance ([6b21099](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/6b21099966f28cef6d1f91d5d7a40e573455be18))
+
 # 1.0.0 (2021-09-02)
 
 
