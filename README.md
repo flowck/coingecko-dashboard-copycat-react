@@ -18,3 +18,9 @@
 
 - Production `main` - [coingecko-dashboard-react.changani.me](https://coingecko-dashboard-react.changani.me)
 - Development `develop` - [dev.coingecko-dashboard-react.changani.me](https://dev.coingecko-dashboard-react.changani.me)
+
+## Naming conventions
+
+- Store modules: `moduleName.fileName.ts`
+- Module Views: `moduleName.viewName.tsx`
+- Components: `componentName.tsx`, `componentName.style.tsx`
