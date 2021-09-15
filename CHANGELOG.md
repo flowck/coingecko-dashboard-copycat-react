@@ -1,3 +1,36 @@
+# [1.2.0](https://github.com/flowck/coingecko-dashboard-copycat-react/compare/v1.1.0...v1.2.0) (2021-09-15)
+
+### Bug Fixes
+
+- checkout repo ([c07f83e](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/c07f83edc2426ea49fe24f452340812b8059ab2c))
+- remove gitlab config ([5d63551](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/5d6355178f755f15deee671ece174cca64b166a9))
+- repository url ([fbf06fe](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/fbf06fecf40db7730da676e840ef030350811a9e))
+
+### Chores
+
+- trigger release on each push to main ([3a98fb6](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/3a98fb68ae14a8bf2012491fead22b105adea78e))
+- **release:** 1.1.0 [skip ci] ([134aa45](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/134aa458bf1f0cfe395dc8720371fe748b996663))
+- **release:** v1.1.0 ([82d8c76](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/82d8c76923d38ca598c94152017776f9ce7fa5db))
+- add deployment pipeline ([ac64258](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/ac642586e803ce5e6bf7577ab8297c8cc63d71b3))
+- add github configuration ([f37fd63](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/f37fd63a42e4c6f20a12d3a63d44b8d819624b49))
+- add release job ([880e3c7](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/880e3c7a32d89c68abafd5a2be4eb2e2a42d67ce))
+- change deployment event ([1cf29ff](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/1cf29ffa3b3f2f55cd26c1a42237c75e0bdcd2e4))
+- manually trigger the release job ([eec7338](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/eec73380baa433cfa5d84e64df258823a7b46390))
+- setup github actions ([4d83560](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/4d83560111a3c85dab8c65dd3532c26ad992808d))
+- update branch to be released ([4d1a41e](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/4d1a41e2825d5dd355822a5ced249636bb2d5bdb))
+
+### Features
+
+- add breadcrumbs ([b8dbe5a](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/b8dbe5a3e4151c17b95e499360479b786d560847))
+- add coin details view ([872ea47](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/872ea47f85dac2fb12bacbea4ed090255d926625))
+- use aliases and remove finance ([6b21099](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/6b21099966f28cef6d1f91d5d7a40e573455be18))
+
+### Other
+
+- Merge pull request #2 from flowck/develop ([4d89950](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/4d89950eb23140d3f04de20efe2980ffcf53ce32)), closes [#2](https://github.com/flowck/coingecko-dashboard-copycat-react/issues/2)
+- Merge branch 'main' into develop ([e0982ab](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/e0982abeb6cde88efa4f6f19e182270bf8bc5f5d))
+- Merge pull request #1 from flowck/chore/setup-github-actions ([a788725](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/a7887255c7249c747830d219ecc086ec2b7bf6ad)), closes [#1](https://github.com/flowck/coingecko-dashboard-copycat-react/issues/1)
+
 # [1.1.0](https://github.com/flowck/coingecko-dashboard-copycat-react/compare/v1.0.0...v1.1.0) (2021-09-15)
 
 ### Bug Fixes
