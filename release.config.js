@@ -8,5 +8,5 @@ module.exports = {
     "@semantic-release/git",
     "@semantic-release/github",
   ],
-  repositoryUrl: "https://github.com/flowck/coingecko-dashboard-copycat-react",
+  repositoryUrl: "https://github.com/flowck/coingecko-dashboard-copycat-react.git",
 };
