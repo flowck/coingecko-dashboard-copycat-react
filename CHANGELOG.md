@@ -1,3 +1,13 @@
+## [1.2.1](https://github.com/flowck/coingecko-dashboard-copycat-react/compare/v1.2.0...v1.2.1) (2021-09-15)
+
+### Bug Fixes
+
+- update semantic-release dependency ([0b41500](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/0b41500d65cd558cdf964bcf9eff3406d07af777))
+
+### Other
+
+- Merge pull request #3 from flowck/develop ([14bcb8f](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/14bcb8f16a5c591f648b9c2c32a9b0b7b277eaf1)), closes [#3](https://github.com/flowck/coingecko-dashboard-copycat-react/issues/3)
+
 # [1.2.0](https://github.com/flowck/coingecko-dashboard-copycat-react/compare/v1.1.0...v1.2.0) (2021-09-15)
 
 ### Bug Fixes
