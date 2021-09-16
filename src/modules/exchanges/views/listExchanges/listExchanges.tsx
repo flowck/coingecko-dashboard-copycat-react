@@ -1,20 +1,14 @@
 import { useEffect } from "react";
-import { connect } from "react-redux";
 import { RootState } from "@store/index";
 import { Link } from "react-router-dom";
 import { numberToCurrency } from "@common/utils";
-import { AppThunkDispatch } from "@store/store.types";
 import { ExchangeName } from "./listExchanges.styles";
+import { useDispatch, useSelector } from "react-redux";
 import { Exchange } from "@exchanges/store/exchanges.interface";
 import { getExchanges } from "@exchanges/store/exchanges.thunks";
 import { DataTable } from "@common/components/dataTable/dataTable";
 import { ViewTitle } from "@common/components/viewTitle/viewTitle";
 import { TrustScore } from "@exchanges/components/trustScore/trustScore";
-
-interface Props {
-  exchanges: Exchange[];
-  getExchanges(page: number, perPage: number): void;
-}
 
 const columns = [
   {
@@ -50,10 +44,13 @@ const columns = [
   { name: "trade_volume_24h_btc_normalized", label: "Trade volume 24h (BTC normalized)" },
 ];
 
-function ListExchanges({ getExchanges, exchanges }: Props) {
+export function ListExchanges() {
+  const dispatch = useDispatch();
+  const exchanges = useSelector<RootState, Exchange[]>(({ exchangesModule }) => exchangesModule.exchanges);
+
   useEffect(() => {
-    getExchanges(1, 50);
-  }, [getExchanges]);
+    dispatch(getExchanges(1, 50));
+  }, [dispatch]);
 
   return (
     <section>
@@ -63,17 +60,3 @@ function ListExchanges({ getExchanges, exchanges }: Props) {
     </section>
   );
 }
-
-const mapDispatchToProps = (dispatch: AppThunkDispatch) => {
-  return {
-    getExchanges: (page: number, perPage: number) => dispatch(getExchanges(page, perPage)),
-  };
-};
-
-const mapStateToProps = ({ exchangesModule }: RootState) => {
-  return {
-    exchanges: exchangesModule.exchanges || [],
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListExchanges);

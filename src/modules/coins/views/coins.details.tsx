@@ -1,24 +1,15 @@
 import { useEffect } from "react";
 import parse from "html-react-parser";
-import { connect } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "@store/index";
 import { useParams } from "react-router";
 import { numberToCurrency } from "@common/utils";
 import { Card } from "@common/components/card/card";
-import { AppThunkDispatch } from "@store/store.types";
+import { useDispatch, useSelector } from "react-redux";
 import { ViewTitle } from "@common/components/viewTitle/viewTitle";
 import { CoinDetails, CoinMarketChart } from "@coins/store/coins.interfaces";
 import { fetchCoinDetails, fetchCoinMarketChart } from "@coins/store/coins.thunks";
 import { TimeSeriesChart } from "@coins/components/timeSeriesChart/timeSeriesChart";
-
-interface Props {
-  vsCurrency: string;
-  coin: CoinDetails | null;
-  coinChart: CoinMarketChart | null;
-  _fetchCoinDetails(id: string): void;
-  _fetchCoinMarketData(id: string, vsCurrency: string, days?: number): void;
-}
 
 const CoinTitle = styled.div`
   display: flex;
@@ -43,10 +34,20 @@ const CoinMarketStats = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 `;
 
-function CoinsDetails({ coin, vsCurrency, coinChart, _fetchCoinDetails, _fetchCoinMarketData }: Props) {
+export function CoinsDetails() {
+  const dispatch = useDispatch();
   const { coinId } = useParams<Record<string, string>>();
-  useEffect(() => _fetchCoinDetails(coinId), [_fetchCoinDetails, coinId]);
-  useEffect(() => _fetchCoinMarketData(coinId, vsCurrency), [_fetchCoinMarketData, coinId, vsCurrency]);
+  const coin = useSelector<RootState, CoinDetails | null>(({ coinsModule }) => coinsModule.coin);
+  const vsCurrency = useSelector<RootState, string>(({ coinsModule }) => coinsModule.coinsPerMarketVsCurrency);
+  const coinChart = useSelector<RootState, CoinMarketChart | null>(({ coinsModule }) => coinsModule.coinChart);
+
+  useEffect(() => {
+    dispatch(fetchCoinDetails(coinId));
+  }, [dispatch, coinId]);
+
+  useEffect(() => {
+    dispatch(fetchCoinMarketChart(coinId, vsCurrency));
+  }, [dispatch, coinId, vsCurrency]);
 
   return (
     <section>
@@ -89,21 +90,3 @@ function CoinsDetails({ coin, vsCurrency, coinChart, _fetchCoinDetails, _fetchCo
     </section>
   );
 }
-
-const mapDispatchToProps = (dispatch: AppThunkDispatch) => {
-  return {
-    _fetchCoinDetails: (id: string) => dispatch(fetchCoinDetails(id)),
-    _fetchCoinMarketData: (id: string, vsCurrency: string, days?: number) =>
-      dispatch(fetchCoinMarketChart(id, vsCurrency, days)),
-  };
-};
-
-const mapStateToProps = (state: RootState) => {
-  return {
-    coin: state.coinsModule.coin,
-    coinChart: state.coinsModule.coinChart,
-    vsCurrency: state.coinsModule.coinsPerMarketVsCurrency,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CoinsDetails);
