@@ -16,10 +16,12 @@
 - ✅ Static code analysis - [Sonarqube](https://sonarqube.changani.me/dashboard?id=flowck_coingecko-dashboard-copycat-react)
 - ⚠️ Lighthouse analysis
 
-## Environments
+## Environments per git branch
 
-- Production `main` - [coingecko-dashboard-react.changani.me](https://coingecko-dashboard-react.changani.me)
-- Development `develop` - [dev.coingecko-dashboard-react.changani.me](https://dev.coingecko-dashboard-react.changani.me)
+| Environment | Branch  | URL                                                                                                |
+| ----------- | ------- | -------------------------------------------------------------------------------------------------- |
+| Production  | main    | [coingecko-dashboard-react.changani.me](https://coingecko-dashboard-react.changani.me)             |
+| Staging     | develop | [staging.coingecko-dashboard-react.changani.me](https://dev.coingecko-dashboard-react.changani.me) |
 
 ## Naming conventions
 
