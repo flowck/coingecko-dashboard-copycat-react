@@ -43,7 +43,7 @@ jobs:
           event_type: semantic-release
 
       - name: Trigger Deployment to Staging
-        # if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/develop'
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.GH_TOKEN }}
