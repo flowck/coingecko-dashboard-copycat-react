@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to Staging
 on:
   repository_dispatch:
     types: [deploy-to-staging]
