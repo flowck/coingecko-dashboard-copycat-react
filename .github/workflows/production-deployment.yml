@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to Production
 on:
   repository_dispatch:
     types: [deploy-to-prod]

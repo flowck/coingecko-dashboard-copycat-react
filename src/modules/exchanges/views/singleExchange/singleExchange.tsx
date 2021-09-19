@@ -1,36 +1,22 @@
 import { useEffect } from "react";
-import { connect } from "react-redux";
 import { RootState } from "@store/index";
 import { useParams } from "react-router-dom";
-import { AppThunkDispatch } from "@store/store.types";
+import { useDispatch, useSelector } from "react-redux";
 import { FullExchange } from "@exchanges/store/exchanges.interface";
 import { getSingleExchange } from "@exchanges/store/exchanges.thunks";
 
-interface Props {
-  exchange: FullExchange | null;
-  getSingleExchange(id: string): void;
-}
-
-function SingleExchange({ exchange, getSingleExchange }: Props) {
+function SingleExchange() {
+  const dispatch = useDispatch();
   const { exchangeId } = useParams<{ exchangeId: string }>();
+  const exchange = useSelector<RootState, FullExchange | null>(({ exchangesModule }) => exchangesModule.exchange);
+
+  console.log(exchange);
 
   useEffect(() => {
-    getSingleExchange(exchangeId);
-  }, [exchangeId, getSingleExchange]);
+    dispatch(getSingleExchange(exchangeId));
+  }, [exchangeId, dispatch]);
 
   return <section>{/* <ViewTitle title=""> */}</section>;
 }
 
-function mapStateToProps(state: RootState) {
-  return {
-    exchange: state.exchangesModule.exchange,
-  };
-}
-
-function mapDispatchToProps(dispatch: AppThunkDispatch) {
-  return {
-    getSingleExchange: (id: string) => dispatch(getSingleExchange(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleExchange);
+export default SingleExchange;

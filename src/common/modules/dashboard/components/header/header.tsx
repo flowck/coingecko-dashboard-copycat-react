@@ -12,7 +12,7 @@ export function Header() {
       <HeaderNavigation>
         <ul>
           <li>
-            <a href="https://gitlab.com/firmino.changani/coingecko-dashboard-copycat-react">Source code</a>
+            <a href="https://github.com/flowck/coingecko-dashboard-copycat-react">Source code</a>
           </li>
         </ul>
       </HeaderNavigation>

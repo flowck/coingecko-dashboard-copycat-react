@@ -24,9 +24,22 @@ jobs:
       - name: Test
         run: npm run test
 
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Trigger Release
         if: github.ref == 'refs/heads/main'
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.GH_TOKEN }}
           event_type: semantic-release
+
+      - name: Trigger Deployment to Staging
+        if: github.ref == 'refs/heads/develop'
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          event_type: deploy-to-staging
