@@ -1,5 +1,7 @@
 # CoinGecko Dashboard Copycat
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=flowck_coingecko-dashboard-copycat-react&metric=alert_status)](https://sonarcloud.io/dashboard?id=flowck_coingecko-dashboard-copycat-react)
+
 ## Architecture
 
 ![Architecture](./docs/architecture.png)
