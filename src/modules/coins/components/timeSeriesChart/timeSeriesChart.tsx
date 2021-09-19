@@ -14,7 +14,12 @@ const ChartContainer = styled.div``;
 
 export function TimeSeriesChart({ name, serie, currency }: Props) {
   const [options] = useState<ApexOptions>({
-    chart: { id: "" },
+    chart: {
+      id: "",
+      animations: {
+        enabled: false,
+      },
+    },
     xaxis: { type: "datetime" },
     yaxis: {
       labels: {
