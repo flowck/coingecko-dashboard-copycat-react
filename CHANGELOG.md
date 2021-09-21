@@ -1,3 +1,11 @@
+## [1.2.2](https://github.com/flowck/coingecko-dashboard-copycat-react/compare/v1.2.1...v1.2.2) (2021-09-21)
+
+
+### Bug Fixes
+
+* **#22:** disable chart animation ([fdf38d3](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/fdf38d367117cc9419f7cd1b712aa624c43e55d3)), closes [#22](https://github.com/flowck/coingecko-dashboard-copycat-react/issues/22)
+* move release job to main ci pipeline ([872c2d1](https://github.com/flowck/coingecko-dashboard-copycat-react/commit/872c2d14b3c6e7cae9bfc43c0af173d5e2517301))
+
 ## [1.2.1](https://github.com/flowck/coingecko-dashboard-copycat-react/compare/v1.2.0...v1.2.1) (2021-09-15)
 
 ### Bug Fixes
