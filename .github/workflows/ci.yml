@@ -30,12 +30,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Trigger Release
+      - name: Release
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx semantic-release
+
+      - name: Trigger deployment to production
         if: github.ref == 'refs/heads/main'
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.GH_TOKEN }}
-          event_type: semantic-release
+          event_type: deploy-to-prod
 
       - name: Trigger Deployment to Staging
         if: github.ref == 'refs/heads/develop'
