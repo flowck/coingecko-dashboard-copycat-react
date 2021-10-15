@@ -20,13 +20,17 @@ function CoinsList() {
   const categories = useSelector<RootState, CoinsCategory[]>(({ coinsModule }) => coinsModule.categories);
 
   useEffect(() => {
-    dispatch(fetchCoinsPerMarket(vsCurrency));
-    dispatch(fetchCoinsCategories());
-  }, [vsCurrency, dispatch]);
+    if (!coins.length) {
+      dispatch(fetchCoinsPerMarket(vsCurrency));
+      dispatch(fetchCoinsCategories());
+    }
+  }, [vsCurrency, dispatch, coins]);
 
   useEffect(() => {
-    dispatch(fetchCoinsPerMarket(vsCurrency, 1, selectedCategory));
-  }, [selectedCategory, vsCurrency, dispatch]);
+    if (!coins.length) {
+      dispatch(fetchCoinsPerMarket(vsCurrency, 1, selectedCategory));
+    }
+  }, [selectedCategory, vsCurrency, dispatch, coins]);
 
   const paginationHandler = (page: number) => {
     dispatch(fetchCoinsPerMarket(vsCurrency, page, selectedCategory));
