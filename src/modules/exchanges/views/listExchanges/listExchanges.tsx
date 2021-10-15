@@ -49,8 +49,10 @@ export function ListExchanges() {
   const exchanges = useSelector<RootState, Exchange[]>(({ exchangesModule }) => exchangesModule.exchanges);
 
   useEffect(() => {
-    dispatch(getExchanges(1, 50));
-  }, [dispatch]);
+    if (!exchanges.length) {
+      dispatch(getExchanges(1, 50));
+    }
+  }, [dispatch, exchanges]);
 
   return (
     <section>
